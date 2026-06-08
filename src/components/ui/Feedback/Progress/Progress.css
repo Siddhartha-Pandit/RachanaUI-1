@@ -1,0 +1,51 @@
+.progress-wrapper {
+  width: 100%;
+}
+
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+
+  margin-bottom: var(--sp-2);
+
+  font-size: 12px;
+
+  color: var(--neutral-400);
+}
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+
+  overflow: hidden;
+
+  border-radius: var(--radius-full);
+
+  background: var(--neutral-200);
+}
+
+.progress-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  transition:
+    width var(--motion-slow)
+      var(--ease-out);
+}
+
+.progress-default {
+  background: var(--brand-400);
+}
+
+.progress-success {
+  background: var(--success-400);
+}
+
+.progress-warning {
+  background: var(--warning-400);
+}
+
+.progress-danger {
+  background: var(--danger-400);
+}

@@ -1,0 +1,626 @@
+:root {
+  --brand-400: #2271e6; /* Brand primary → Primary buttons, links, focus rings */
+  --brand-50: #eef3fb; /* Brand tint → Active sidebar item bg, hover bg */
+  --success-400: #12b76a; /* Success → Success badge, positive metric, checkmark */
+  --success-50: #eafbf3; /* Success tint → Alert bg, badge bg */
+  --warning-400: #f79009; /* Warning → Warning icon, progress bar at risk */
+  --danger-400: #d92d20; /* Danger → Error state, delete button, alert */
+  --neutral-700: #0f172a; /* Primary text → Headings, body text */
+  --neutral-400: #5b6475; /* Secondary text → Captions, hints, labels */
+  --neutral-200: #d9e2f0; /* Border → Card borders, dividers, input borders */
+  --neutral-50: #f5f8fc; /* Page bg → App background, table header */
+  --neutral-0: #ffffff; /* Surface → Card, modal, dropdown bg */
+  --sp-1: 4px; /* Tight icon gap, inline item gap */
+  --sp-2: 8px; /* Button-icon gap, badge padding, tag gap */
+  --sp-3: 12px; /* Input internal padding, tight card */
+  --sp-4: 16px; /* Card padding, list item gap, form field gap */
+  --sp-6: 24px; /* Section subheading gap, modal inner padding */
+  --sp-8: 32px; /* Card-to-card gap, form group separation */
+  --sp-12: 48px; /* Section-to-section, major vertical gaps */
+  --sp-16: 64px; /* Page top padding, hero gap, page sections */
+  --sp-24: 96px; /* Major section break, marketing blocks */
+  --radius-xs: 2px; /* xs */
+  --radius-sm: 4px; /* sm */
+  --radius-sm-plus: 6px; /* sm+ */
+  --radius-md: 8px; /* Inputs & buttons */
+  --radius-lg: 12px; /* Dropdowns & popovers */
+  --radius-xl: 16px; /* Cards */
+  --radius-2xl: 24px; /* Large containers */
+  --radius-full: 9999px; /* Pill / badge */
+  --shadow-none: none; /* none → page sections, flat layouts, border only */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.06); /* sm → cards, widgets, small panels */
+  --shadow-md: 0 4px 8px rgba(15, 23, 42, 0.08); /* md → tooltips, hover cards, floating hints */
+  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.1); /* lg → dropdowns, popovers, side menus, toasts */
+  --shadow-xl: 0 16px 48px rgba(15, 23, 42, 0.14); /* xl → modals, dialogs, large floating surfaces */
+  --motion-fast: 100ms; /* Fast → Hover states, tooltips, focus rings, icon swaps */
+
+  --motion-base: 150ms; /* Base → Button press, toggle, badge swap, border color */
+
+  --motion-slow: 250ms; /* Slow → Page transitions, modals, sidebar open/close */
+  --ease-default: ease; /* Default → Most transitions */
+
+  --ease-out: cubic-bezier(0, 0, 0.2, 1); /* Entering screen */
+
+  --ease-in: cubic-bezier(0.4, 0, 1, 1); /* Leaving screen */
+
+  --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1); /* Moving across screen */
+
+  --ease-spring: cubic-bezier(
+    0.34,
+    1.56,
+    0.64,
+    1
+  ); /* Playful → Toggles, dropdowns, badges */
+  --anim-fade-in: fadeIn var(--motion-base) var(--ease-out); /* fadeIn → Content appearing after load */
+
+  --anim-slide-in: slideIn var(--motion-slow) var(--ease-out); /* slideIn → Toast, drawer, notification */
+
+  --anim-fade-scale: fadeScale var(--motion-slow) var(--ease-out); /* fadeScale → Modal, dropdown, popover */
+
+  --anim-shimmer: shimmer 1.5s linear infinite; /* shimmer → Skeleton loading state */
+  --anim-slide-up: slideUp var(--motion-slow) var(--ease-out); /* slideUp → Modal, bottom sheet, floating panel */
+
+  --anim-bounce-in: bounceIn 400ms var(--ease-spring); /* bounceIn → Toggle, badge, playful interaction */
+  --font-family-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  --font-family-mono:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+}
+
+[data-theme="dark"] {
+  --brand-400: #4d91ff; /* Brand primary → Primary buttons, links, focus rings */
+  --brand-50: rgba(
+    34,
+    113,
+    230,
+    0.15
+  ); /* Brand tint → Active sidebar item bg, hover bg */
+  --success-400: #22d87a; /* Success → Success badge, positive metric, checkmark */
+  --success-50: rgba(
+    18,
+    183,
+    106,
+    0.15
+  ); /* Success tint → Alert bg, badge bg */
+  --warning-400: #fba530; /* Warning → Warning icon, progress bar at risk */
+  --danger-400: #f04438; /* Danger → Error state, delete button, alert */
+  --neutral-700: #f1f5f9; /* Primary text → Headings, body text */
+  --neutral-400: #94a3b8; /* Secondary text → Captions, hints, labels */
+  --neutral-200: #334155; /* Border → Card borders, dividers, input borders */
+  --neutral-50: #1e293b; /* Page bg → App background, table header */
+  --neutral-0: #1e293b; /* Surface → Card, modal, dropdown bg */
+  --shadow-none: none; /* none → page sections, flat layouts, border only */
+
+  --shadow-sm:
+    0 0 0 1px rgba(255, 255, 255, 0.03), 0 1px 2px rgba(0, 0, 0, 0.18); /* sm → cards, widgets, small panels */
+
+  --shadow-md:
+    0 0 0 1px rgba(255, 255, 255, 0.04), 0 4px 8px rgba(0, 0, 0, 0.22); /* md → tooltips, hover cards, floating hints */
+
+  --shadow-lg:
+    0 0 0 1px rgba(255, 255, 255, 0.05), 0 8px 24px rgba(0, 0, 0, 0.28); /* lg → dropdowns, popovers, side menus, toasts */
+
+  --shadow-xl:
+    0 0 0 1px rgba(255, 255, 255, 0.06), 0 16px 48px rgba(0, 0, 0, 0.36); /* xl → modals, dialogs, large floating surfaces */
+}
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.display {
+  font-size: 36px;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.h1 {
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.h2 {
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: -0.3px;
+}
+
+.h3 {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.h4 {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.body-lg {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+
+.body {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0;
+}
+
+.body-sm {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.caption {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: 0;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+}
+
+.mono {
+  font-family: var(--font-family-mono);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+/* Padding */
+
+.p-1 {
+  padding: var(--sp-1);
+}
+.p-2 {
+  padding: var(--sp-2);
+}
+.p-3 {
+  padding: var(--sp-3);
+}
+.p-4 {
+  padding: var(--sp-4);
+}
+.p-6 {
+  padding: var(--sp-6);
+}
+.p-8 {
+  padding: var(--sp-8);
+}
+.p-12 {
+  padding: var(--sp-12);
+}
+.p-16 {
+  padding: var(--sp-16);
+}
+.p-24 {
+  padding: var(--sp-24);
+}
+
+/* Padding Top */
+
+.pt-1 {
+  padding-top: var(--sp-1);
+}
+.pt-2 {
+  padding-top: var(--sp-2);
+}
+.pt-3 {
+  padding-top: var(--sp-3);
+}
+.pt-4 {
+  padding-top: var(--sp-4);
+}
+.pt-6 {
+  padding-top: var(--sp-6);
+}
+.pt-8 {
+  padding-top: var(--sp-8);
+}
+.pt-12 {
+  padding-top: var(--sp-12);
+}
+.pt-16 {
+  padding-top: var(--sp-16);
+}
+.pt-24 {
+  padding-top: var(--sp-24);
+}
+
+/* Padding Bottom */
+
+.pb-1 {
+  padding-bottom: var(--sp-1);
+}
+.pb-2 {
+  padding-bottom: var(--sp-2);
+}
+.pb-3 {
+  padding-bottom: var(--sp-3);
+}
+.pb-4 {
+  padding-bottom: var(--sp-4);
+}
+.pb-6 {
+  padding-bottom: var(--sp-6);
+}
+.pb-8 {
+  padding-bottom: var(--sp-8);
+}
+.pb-12 {
+  padding-bottom: var(--sp-12);
+}
+.pb-16 {
+  padding-bottom: var(--sp-16);
+}
+.pb-24 {
+  padding-bottom: var(--sp-24);
+}
+
+/* Margin */
+
+.m-1 {
+  margin: var(--sp-1);
+}
+.m-2 {
+  margin: var(--sp-2);
+}
+.m-3 {
+  margin: var(--sp-3);
+}
+.m-4 {
+  margin: var(--sp-4);
+}
+.m-6 {
+  margin: var(--sp-6);
+}
+.m-8 {
+  margin: var(--sp-8);
+}
+.m-12 {
+  margin: var(--sp-12);
+}
+.m-16 {
+  margin: var(--sp-16);
+}
+.m-24 {
+  margin: var(--sp-24);
+}
+
+/* Margin Bottom */
+
+.mb-1 {
+  margin-bottom: var(--sp-1);
+}
+.mb-2 {
+  margin-bottom: var(--sp-2);
+}
+.mb-3 {
+  margin-bottom: var(--sp-3);
+}
+.mb-4 {
+  margin-bottom: var(--sp-4);
+}
+.mb-6 {
+  margin-bottom: var(--sp-6);
+}
+.mb-8 {
+  margin-bottom: var(--sp-8);
+}
+.mb-12 {
+  margin-bottom: var(--sp-12);
+}
+.mb-16 {
+  margin-bottom: var(--sp-16);
+}
+.mb-24 {
+  margin-bottom: var(--sp-24);
+}
+
+/* Gap */
+
+.gap-1 {
+  gap: var(--sp-1);
+}
+.gap-2 {
+  gap: var(--sp-2);
+}
+.gap-3 {
+  gap: var(--sp-3);
+}
+.gap-4 {
+  gap: var(--sp-4);
+}
+.gap-6 {
+  gap: var(--sp-6);
+}
+.gap-8 {
+  gap: var(--sp-8);
+}
+.gap-12 {
+  gap: var(--sp-12);
+}
+.gap-16 {
+  gap: var(--sp-16);
+}
+.gap-24 {
+  gap: var(--sp-24);
+}
+
+/* border radius */
+.rounded-xs {
+  border-radius: var(--radius-xs);
+}
+.rounded-sm {
+  border-radius: var(--radius-sm);
+}
+.rounded-sm-plus {
+  border-radius: var(--radius-sm-plus);
+}
+.rounded-md {
+  border-radius: var(--radius-md);
+}
+.rounded-lg {
+  border-radius: var(--radius-lg);
+}
+.rounded-xl {
+  border-radius: var(--radius-xl);
+}
+.rounded-2xl {
+  border-radius: var(--radius-2xl);
+}
+.rounded-full {
+  border-radius: var(--radius-full);
+}
+
+.shadow-none {
+  box-shadow: var(--shadow-none);
+}
+
+.shadow-sm {
+  box-shadow: var(--shadow-sm);
+}
+
+.shadow-md {
+  box-shadow: var(--shadow-md);
+}
+
+.shadow-lg {
+  box-shadow: var(--shadow-lg);
+}
+
+.shadow-xl {
+  box-shadow: var(--shadow-xl);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeScale {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+
+  to {
+    background-position: -200% 0;
+  }
+}
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  60% {
+    opacity: 1;
+    transform: scale(1.03);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+/* ────────────────────────────────── DURATION UTILITIES ── */
+
+.duration-fast {
+  transition-duration: var(--motion-fast);
+}
+
+.duration-base {
+  transition-duration: var(--motion-base);
+}
+
+.duration-slow {
+  transition-duration: var(--motion-slow);
+}
+
+/* ────────────────────────────────── EASING UTILITIES ── */
+
+.ease-default {
+  transition-timing-function: var(--ease-default);
+}
+
+.ease-out {
+  transition-timing-function: var(--ease-out);
+}
+
+.ease-in {
+  transition-timing-function: var(--ease-in);
+}
+
+.ease-in-out {
+  transition-timing-function: var(--ease-in-out);
+}
+
+.ease-spring {
+  transition-timing-function: var(--ease-spring);
+}
+
+/* ────────────────────────────────── TRANSITION UTILITIES ── */
+
+.transition {
+  transition-property: all;
+}
+
+.transition-colors {
+  transition-property:
+    color, background-color, border-color, text-decoration-color, fill, stroke;
+}
+
+.transition-opacity {
+  transition-property: opacity;
+}
+
+.transition-transform {
+  transition-property: transform;
+}
+
+.transition-shadow {
+  transition-property: box-shadow;
+}
+
+/* ────────────────────────────────── ANIMATION UTILITIES ── */
+
+.animate-fade-in {
+  animation: var(--anim-fade-in);
+}
+
+.animate-slide-in {
+  animation: var(--anim-slide-in);
+}
+
+.animate-fade-scale {
+  animation: var(--anim-fade-scale);
+}
+
+.animate-shimmer {
+  animation: var(--anim-shimmer);
+}
+.animate-slide-up {
+  animation: var(--anim-slide-up);
+}
+
+.animate-bounce-in {
+  animation: var(--anim-bounce-in);
+}
+
+/* ─
+/* ────────────────────────────────── INTERACTION UTILITIES ── */
+
+.hover:scale:hover {
+  transform: scale(1.02);
+}
+
+.hover:opacity:hover {
+  opacity: 0.8;
+}
+
+.hover:shadow-lg:hover {
+  box-shadow: var(--shadow-lg);
+}
+.hover:translate-up:hover {
+  transform: translateY(-2px);
+}
+
+.hover:bounce:hover {
+  animation: var(--anim-bounce-in);
+}
+
+.active:scale:active {
+  transform: scale(0.97);
+}
+
+.focus:ring:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 113, 230, 0.18);
+}
+
+/* ────────────────────────────────── ACCESSIBILITY ── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

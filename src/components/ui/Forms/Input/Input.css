@@ -1,0 +1,137 @@
+.input-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: var(--sp-2);
+}
+
+.input-label {
+  font-size: 13px;
+  font-weight: 500;
+
+  color: var(--neutral-700);
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  height: 42px;
+
+  padding-inline: var(--sp-4);
+
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+
+  background: var(--neutral-0);
+
+  color: var(--neutral-700);
+
+  font-size: 14px;
+  font-family: var(--font-family-sans);
+
+  outline: none;
+
+  transition:
+    border-color var(--motion-base) var(--ease-out),
+    box-shadow var(--motion-base) var(--ease-out),
+    background-color var(--motion-base) var(--ease-out);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--neutral-400);
+}
+
+.input:hover:not(:disabled),
+.textarea:hover:not(:disabled) {
+  border-color: var(--neutral-400);
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: var(--brand-400);
+
+  box-shadow: 0 0 0 3px var(--brand-50);
+}
+
+.input:disabled,
+.textarea:disabled {
+  opacity: 0.6;
+
+  cursor: not-allowed;
+}
+
+.input-error {
+  border-color: var(--danger-400);
+}
+
+.input-error:focus {
+  box-shadow: 0 0 0 3px rgba(217, 45, 32, 0.14);
+}
+
+.input-success {
+  border-color: var(--success-400);
+}
+
+.input-success:focus {
+  box-shadow: 0 0 0 3px rgba(18, 183, 106, 0.14);
+}
+
+.textarea {
+  min-height: 120px;
+
+  padding-top: var(--sp-3);
+  padding-bottom: var(--sp-3);
+
+  resize: vertical;
+
+  line-height: 1.6;
+}
+
+.input-icon {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: var(--neutral-400);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.input-icon-left {
+  left: var(--sp-3);
+}
+
+.input-icon-right {
+  right: var(--sp-3);
+}
+
+.input-has-left {
+  padding-left: 40px;
+}
+
+.input-has-right {
+  padding-right: 40px;
+}
+
+.input-hint {
+  font-size: 12px;
+  color: var(--neutral-400);
+}
+
+.input-error-text {
+  font-size: 12px;
+  color: var(--danger-400);
+}
+
+.input-success-text {
+  font-size: 12px;
+  color: var(--success-400);
+}

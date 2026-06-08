@@ -1,0 +1,171 @@
+.toast-container {
+  position: fixed;
+
+  z-index: 400;
+
+  display: flex;
+
+  animation: var(--anim-slide-in);
+}
+
+.toast-top-left {
+  top: var(--sp-6);
+  left: var(--sp-6);
+}
+
+.toast-top-right {
+  top: var(--sp-6);
+  right: var(--sp-6);
+}
+
+.toast-top-center {
+  top: var(--sp-6);
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.toast-bottom-left {
+  bottom: var(--sp-6);
+  left: var(--sp-6);
+}
+
+.toast-bottom-right {
+  bottom: var(--sp-6);
+  right: var(--sp-6);
+}
+
+.toast-bottom-center {
+  bottom: var(--sp-6);
+  left: 50%;
+
+  transform: translateX(-50%);
+}
+
+.toast {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--sp-3);
+
+  width: 340px;
+
+  padding: var(--sp-4);
+
+  border-radius: var(--radius-lg);
+
+  background: var(--neutral-0);
+
+  border: 1px solid;
+
+  box-shadow: var(--shadow-lg);
+
+  animation: var(--anim-slide-in);
+}
+
+.toast-content {
+  flex: 1;
+}
+
+.toast-icon {
+  width: 24px;
+  height: 24px;
+
+  border-radius: var(--radius-full);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  color: var(--neutral-0);
+}
+
+.toast-title {
+  margin: 0 0 2px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: var(--neutral-700);
+}
+
+.toast-description {
+  margin: 0;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  color: var(--neutral-400);
+}
+
+.toast-close {
+  width: 24px;
+  height: 24px;
+
+  border: none;
+
+  border-radius: var(--radius-sm);
+
+  background: transparent;
+
+  color: var(--neutral-400);
+
+  cursor: pointer;
+
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    background-color var(--motion-fast)
+      var(--ease-out),
+    color var(--motion-fast)
+      var(--ease-out);
+}
+
+.toast-close:hover {
+  background: var(--neutral-50);
+
+  color: var(--neutral-700);
+}
+
+/* Variants */
+
+.toast-info {
+  border-color: var(--brand-400);
+}
+
+.toast-info .toast-icon {
+  background: var(--brand-400);
+}
+
+.toast-success {
+  border-color: var(--success-400);
+}
+
+.toast-success .toast-icon {
+  background: var(--success-400);
+}
+
+.toast-warning {
+  border-color: var(--warning-400);
+}
+
+.toast-warning .toast-icon {
+  background: var(--warning-400);
+}
+
+.toast-danger {
+  border-color: var(--danger-400);
+}
+
+.toast-danger .toast-icon {
+  background: var(--danger-400);
+}

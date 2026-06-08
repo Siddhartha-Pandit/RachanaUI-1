@@ -1,0 +1,157 @@
+.table-wrapper {
+  width: 100%;
+
+  border: 1px solid
+    var(--neutral-200);
+
+  border-radius: var(--radius-xl);
+
+  background: var(--neutral-0);
+
+  overflow: hidden;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.table-scroll {
+  width: 100%;
+
+  overflow-x: auto;
+  overflow-y: auto;
+
+  scrollbar-width: thin;
+
+  scrollbar-color:
+    var(--neutral-200)
+    transparent;
+}
+
+.table-scroll::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.table-scroll::-webkit-scrollbar-thumb {
+  background: var(--neutral-200);
+
+  border-radius: var(--radius-full);
+}
+
+.table {
+  width: 100%;
+
+  min-width: 800px;
+
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.table-head {
+  position: relative;
+
+  padding:
+    var(--sp-4)
+    var(--sp-4);
+
+  background: var(--neutral-50);
+
+  color: var(--neutral-700);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  border-bottom: 1px solid
+    var(--neutral-200);
+
+  z-index: 2;
+}
+
+.table-head-sticky {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 20;
+}
+
+.table-row {
+  transition:
+    background-color
+      var(--motion-fast)
+      var(--ease-out);
+}
+
+.table-row-striped:nth-child(even) {
+  background: rgba(
+    15,
+    23,
+    42,
+    0.02
+  );
+}
+
+.table-row-hover:hover {
+  background: var(--brand-50);
+}
+
+.table-cell {
+  padding:
+    var(--sp-4)
+    var(--sp-4);
+
+  border-bottom: 1px solid
+    var(--neutral-200);
+
+  color: var(--neutral-700);
+
+  font-size: 14px;
+
+  white-space: nowrap;
+
+  background: inherit;
+}
+
+.table-first-column {
+  position: sticky;
+
+  left: 0;
+
+  z-index: 10;
+
+  background: var(--neutral-0);
+
+  box-shadow:
+    1px 0 0
+    var(--neutral-200);
+}
+
+.table-head.table-first-column {
+  z-index: 30;
+
+  background: var(--neutral-50);
+}
+
+.table-empty {
+  padding: var(--sp-12);
+
+  text-align: center;
+
+  color: var(--neutral-400);
+}
+
+@media (max-width: 768px) {
+  .table {
+    min-width: 700px;
+  }
+
+  .table-head,
+  .table-cell {
+    padding:
+      var(--sp-3)
+      var(--sp-3);
+
+    font-size: 13px;
+  }
+}
