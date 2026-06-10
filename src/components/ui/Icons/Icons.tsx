@@ -138,12 +138,12 @@ export const IconBase: React.FC<BaseProps> = ({
   injectStylesOnce();
 
   const ctx = useIconContext();
-  const resolvedSize        = resolveSize(size ?? ctx.size);
-  const resolvedColor       = color ?? ctx.color ?? 'currentColor';
-  const resolvedWeight      = weight ?? ctx.weight ?? 'regular';
+  const resolvedSize = resolveSize(size ?? ctx.size);
+  const resolvedColor = color ?? ctx.color ?? 'currentColor';
+  const resolvedWeight = weight ?? ctx.weight ?? 'regular';
   const resolvedStrokeWidth = strokeWidth ?? ctx.strokeWidth ?? WEIGHT_MAP[resolvedWeight];
-  const resolvedVariant     = variant ?? ctx.variant ?? 'outline';
-  const isFilled            = resolvedVariant === 'filled';
+  const resolvedVariant = variant ?? ctx.variant ?? 'outline';
+  const isFilled = resolvedVariant === 'filled';
 
   const transforms: string[] = [];
   if (flipH) transforms.push('scaleX(-1)');
@@ -165,7 +165,13 @@ export const IconBase: React.FC<BaseProps> = ({
       strokeLinecap="round"
       strokeLinejoin="round"
       className={classes}
-      style={{ transform: transforms.length ? transforms.join(' ') : undefined, ...style }}
+      style={{
+        color: resolvedColor,
+        transform: transforms.length
+          ? transforms.join(' ')
+          : undefined,
+        ...style,
+      }}
       role={label ? 'img' : 'presentation'}
       aria-label={label}
       aria-hidden={!label}
@@ -213,12 +219,12 @@ export const DuotoneBase: React.FC<DuotoneProps> = ({
   injectStylesOnce();
 
   const ctx = useIconContext();
-  const resolvedSize        = resolveSize(size ?? ctx.size);
-  const resolvedColor       = color ?? ctx.color ?? 'currentColor';
-  const resolvedSecondary   = secondaryColor ?? ctx.secondaryColor ?? resolvedColor;
-  const resolvedWeight      = weight ?? ctx.weight ?? 'regular';
+  const resolvedSize = resolveSize(size ?? ctx.size);
+  const resolvedColor = color ?? ctx.color ?? 'currentColor';
+  const resolvedSecondary = secondaryColor ?? ctx.secondaryColor ?? resolvedColor;
+  const resolvedWeight = weight ?? ctx.weight ?? 'regular';
   const resolvedStrokeWidth = strokeWidth ?? ctx.strokeWidth ?? WEIGHT_MAP[resolvedWeight];
-  const resolvedVariant     = variant ?? ctx.variant ?? 'outline';
+  const resolvedVariant = variant ?? ctx.variant ?? 'outline';
 
   const transforms: string[] = [];
   if (flipH) transforms.push('scaleX(-1)');
@@ -260,7 +266,7 @@ export const DuotoneBase: React.FC<DuotoneProps> = ({
     >
       <g fill={resolvedSecondary} opacity={0.2} stroke="none">{bg}</g>
       <g fill="none" stroke={resolvedColor} strokeWidth={resolvedStrokeWidth}
-         strokeLinecap="round" strokeLinejoin="round">{fg}</g>
+        strokeLinecap="round" strokeLinejoin="round">{fg}</g>
     </svg>
   );
 };
