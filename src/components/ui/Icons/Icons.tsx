@@ -320,9 +320,9 @@ export const GridIcon: React.FC<IconProps> = (p) => (
 export const ListIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <path d="M9 6h12M9 12h12M9 18h12" />
-    <circle cx="4" cy="6" r="1" fill="currentColor" stroke="none" />
-    <circle cx="4" cy="12" r="1" fill="currentColor" stroke="none" />
-    <circle cx="4" cy="18" r="1" fill="currentColor" stroke="none" />
+    <circle cx="4" cy="6" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="4" cy="12" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="4" cy="18" r="1.5" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
@@ -373,12 +373,12 @@ export const CollapseIcon: React.FC<IconProps> = (p) => (
 
 export const DragHandleIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <circle cx="9" cy="5" r="1" fill="currentColor" stroke="none" />
-    <circle cx="9" cy="12" r="1" fill="currentColor" stroke="none" />
-    <circle cx="9" cy="19" r="1" fill="currentColor" stroke="none" />
-    <circle cx="15" cy="5" r="1" fill="currentColor" stroke="none" />
-    <circle cx="15" cy="12" r="1" fill="currentColor" stroke="none" />
-    <circle cx="15" cy="19" r="1" fill="currentColor" stroke="none" />
+    <circle cx="9" cy="5" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="9" cy="12" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="9" cy="19" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="15" cy="5" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="15" cy="12" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="15" cy="19" r="1.5" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
@@ -1486,7 +1486,7 @@ export const AlertTriangleIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <path d="m10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
     <line x1="12" y1="9" x2="12" y2="13" />
-    <circle cx="12" cy="17" r="0.75" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="17" r="1.25" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
@@ -1494,7 +1494,7 @@ export const AlertCircleIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <circle cx="12" cy="12" r="10" />
     <line x1="12" y1="8" x2="12" y2="12" />
-    <circle cx="12" cy="16" r="0.75" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="16" r="1.25" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
@@ -1502,7 +1502,7 @@ export const InfoIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <circle cx="12" cy="12" r="10" />
     <line x1="12" y1="16" x2="12" y2="12" />
-    <circle cx="12" cy="8" r="0.75" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="8" r="1.25" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
@@ -1512,7 +1512,7 @@ export const QuestionIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <circle cx="12" cy="12" r="10" />
     <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-    <circle cx="12" cy="17" r="0.75" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="17" r="1.25" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
@@ -1556,8 +1556,8 @@ export const EmptyStateIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <circle cx="12" cy="12" r="10" />
     <path d="M8 15s1.5-2 4-2 4 2 4 2" />
-    <circle cx="9" cy="9.5" r="0.75" fill="currentColor" stroke="none" />
-    <circle cx="15" cy="9.5" r="0.75" fill="currentColor" stroke="none" />
+    <circle cx="9" cy="9.5" r="1.25" fill="currentColor" stroke="none" />
+    <circle cx="15" cy="9.5" r="1.25" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
@@ -1836,9 +1836,10 @@ export const ReceiptIcon: React.FC<IconProps> = (p) => (
 
 export const PaymentIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <rect x="1" y="4" width="22" height="16" rx="2" />
-    <path d="M7 15h.01M11 15h2" />
-    <circle cx="17" cy="15" r="2" />
+    <rect x="2" y="4" width="20" height="16" rx="2" />
+    <path d="M2 8h20" />
+    <rect x="5" y="12" width="3" height="2.5" rx="0.5" />
+    <path d="M12 15h5" />
   </IconBase>
 );
 
@@ -2177,7 +2178,7 @@ export const ScreenShareIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <rect x="2" y="3" width="20" height="13" rx="2" />
     <path d="M8 21h8M12 17v4" />
-    <path d="m15 8 3-3-3-3M18 5H9" />
+    <path d="m15 12 3-3-3-3M18 9H8" />
   </IconBase>
 );
 
@@ -2600,7 +2601,7 @@ export const QrCodeIcon: React.FC<IconProps> = (p) => (
     <rect x="3" y="3" width="6" height="6" rx="1" />
     <rect x="15" y="3" width="6" height="6" rx="1" />
     <rect x="3" y="15" width="6" height="6" rx="1" />
-    <rect x="10" y="10" width="4" height="4" rx="0.5" />
+    <rect x="10" y="10" width="3" height="3" rx="0.5" />
     <line x1="15" y1="15" x2="15" y2="15.01" strokeWidth={3} />
     <line x1="21" y1="15" x2="21" y2="15.01" strokeWidth={3} />
     <line x1="15" y1="21" x2="15" y2="21.01" strokeWidth={3} />
@@ -2610,9 +2611,13 @@ export const QrCodeIcon: React.FC<IconProps> = (p) => (
 
 export const BarcodeIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <path d="M3 5v14M6 5v14M10 5v14M13 5v14M17 5v14M20 5v14" />
-    <rect x="3" y="5" width="4" height="14" rx="0" />
-    <rect x="10" y="5" width="4" height="14" rx="0" />
+    <rect x="3" y="4" width="1" height="16" fill="currentColor" stroke="none" />
+    <rect x="5" y="4" width="1.5" height="16" fill="currentColor" stroke="none" />
+    <rect x="8" y="4" width="0.8" height="16" fill="currentColor" stroke="none" />
+    <rect x="10" y="4" width="2.5" height="16" fill="currentColor" stroke="none" />
+    <rect x="14" y="4" width="1" height="16" fill="currentColor" stroke="none" />
+    <rect x="16.5" y="4" width="2" height="16" fill="currentColor" stroke="none" />
+    <rect x="20" y="4" width="1" height="16" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
@@ -2652,17 +2657,17 @@ export const SpacerIcon: React.FC<IconProps> = (p) => (
 
 export const MoreHorizontalIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
-    <circle cx="19" cy="12" r="1.5" fill="currentColor" stroke="none" />
-    <circle cx="5" cy="12" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="12" r="1.75" fill="currentColor" stroke="none" />
+    <circle cx="19" cy="12" r="1.75" fill="currentColor" stroke="none" />
+    <circle cx="5" cy="12" r="1.75" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
 export const MoreVerticalIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <circle cx="12" cy="12" r="1.5" fill="currentColor" stroke="none" />
-    <circle cx="12" cy="5" r="1.5" fill="currentColor" stroke="none" />
-    <circle cx="12" cy="19" r="1.5" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="12" r="1.75" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="5" r="1.75" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="19" r="1.75" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
