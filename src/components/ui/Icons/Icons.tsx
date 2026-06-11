@@ -1694,7 +1694,17 @@ export const CalendarIcon: React.FC<IconProps> = (p) => (
     <line x1="3" y1="10" x2="21" y2="10" />
   </IconBase>
 );
-
+export const CalendarBsIcon: React.FC<IconProps> = (p) => (
+  <IconBase {...p}>
+    <rect x="3" y="4" width="18" height="17" rx="2" />
+    <line x1="8" y1="2" x2="8" y2="6" />
+    <line x1="16" y1="2" x2="16" y2="6" />
+    <line x1="3" y1="10" x2="21" y2="10" />
+    <text x="12" y="16" textAnchor="middle" fontSize="3.5" fontWeight="700" fill="currentColor" stroke="none" fontFamily="Noto Sans Devanagari, sans-serif">
+      वि.स.
+    </text>
+  </IconBase>
+);
 export const CalendarPlusIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <rect x="3" y="4" width="18" height="17" rx="2" />
@@ -2744,7 +2754,7 @@ export const icons = {
   SettingsIcon, SlidersIcon, ToggleIcon, AdjustmentsIcon, ConfigIcon,
   WrenchIcon, ToolIcon, BuildIcon, CodeIcon, TerminalIcon, ApiIcon,
   WebhookIcon, IntegrationIcon, PluginIcon, ExtensionIcon, ModulesIcon,
-  CalendarIcon, CalendarPlusIcon, CalendarEventIcon, DatePickerIcon,
+  CalendarIcon, CalendarBsIcon, CalendarPlusIcon, CalendarEventIcon, DatePickerIcon,
   ClockIcon, ClockHistoryIcon, TimerIcon, StopwatchIcon, DeadlineIcon,
   ScheduleIcon, RecurringIcon, TimeZoneIcon, DurationIcon, CronIcon,
   CreditCardIcon, WalletIcon, ReceiptIcon, PaymentIcon, RefundIcon,
