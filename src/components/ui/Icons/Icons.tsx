@@ -565,7 +565,8 @@ export const TrashIcon: React.FC<IconProps> = (p) => (
 export const SaveIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z" />
-    <path d="M17 21v-8H7v8M7 3v5h8" />
+    <path d="M7 3v5h8V3" />
+    <path d="M17 21v-8H7v8" />
   </IconBase>
 );
 
@@ -608,8 +609,7 @@ export const ArchiveIcon: React.FC<IconProps> = (p) => (
 
 export const RestoreIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <path d="M3 7v6h6" />
-    <path d="M3 13A9 9 0 1 0 5.63 5.63L3 8" />
+    <path d="M3 7v6h6M3 13a9 9 0 1 0 2.69-7.69L3 7" />
   </IconBase>
 );
 
@@ -759,8 +759,8 @@ export const FolderIcon: React.FC<IconProps> = (p) => (
 
 export const FolderOpenIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2v1" />
-    <path d="M2 10h20" />
+    <path d="M3 10V7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v2" />
+    <path d="M3.5 10h16.2a1.5 1.5 0 0 1 1.45 1.9l-1.1 4.2A2 2 0 0 1 18.1 18H5.8a2 2 0 0 1-1.9-1.3L2.6 13A1.5 1.5 0 0 1 3.5 10z" />
   </IconBase>
 );
 
@@ -907,9 +907,9 @@ export const PhoneCallIcon: React.FC<IconProps> = (p) => (
 
 export const PhoneMissedIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <line x1="23" y1="1" x2="17" y2="7" />
-    <line x1="17" y1="1" x2="23" y2="7" />
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 1 5.18 2 2 0 0 1 3 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 2.17 2.17" />
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 1 5.18 2 2 0 0 1 3 3h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.55 5.55l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+    <line x1="17" y1="3" x2="22" y2="8" />
+    <line x1="22" y1="3" x2="17" y2="8" />
   </IconBase>
 );
 
@@ -1010,8 +1010,8 @@ export const UsersIcon: React.FC<IconProps> = (p) => (
 export const AvatarIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <circle cx="12" cy="12" r="10" />
-    <circle cx="12" cy="9" r="3" />
-    <path d="M6.16 18.82A9.97 9.97 0 0 0 12 21c2.3 0 4.4-.77 6.08-2.06" />
+    <circle cx="12" cy="8" r="3" />
+    <path d="M6.5 18c1.2-2.7 3.5-4 5.5-4s4.3 1.3 5.5 4" />
   </IconBase>
 );
 
@@ -1105,8 +1105,10 @@ export const UnlockIcon: React.FC<IconProps> = (p) => (
 
 export const KeyIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <circle cx="7.5" cy="15.5" r="5.5" />
-    <path d="m21 2-9.6 9.6M15 7l3 3" />
+    <circle cx="8" cy="16" r="4.5" />
+    <path d="M11.2 12.8L21 3" />
+    <path d="M16.8 7.2L19.6 10" />
+    <path d="M18.8 5.2L21.5 8" />
   </IconBase>
 );
 
@@ -1143,14 +1145,11 @@ export const ShieldXIcon: React.FC<IconProps> = (p) => (
 
 export const FingerprintIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4" />
-    <path d="M14 13.12c0 2.38 0 6.38-1 8.88" />
-    <path d="M17.29 21.02c.12-.6.43-2.3.5-3.02" />
-    <path d="M2 12a10 10 0 0 1 18-6" />
-    <path d="M2 17c1 .5 2.04.7 3 .7 3.4 0 6.5-1.83 8.28-4.89" />
-    <path d="M5 12a7 7 0 0 1 3.5-6.07" />
-    <path d="M5.55 17.1c.18-.88.45-1.83.76-2.73" />
-    <path d="M8 12a4 4 0 0 1 8 0" />
+    <path d="M9 21V11a3 3 0 0 1 6 0v10" />
+    <path d="M6 20V11a6 6 0 0 1 12 0v9" />
+    <path d="M3 17.5V11a9 9 0 0 1 18 0v6.5" />
+    <path d="M12 21v-6" />
+    <path d="M12 12v-1.5" />
   </IconBase>
 );
 
@@ -1229,8 +1228,8 @@ export const GdprIcon: React.FC<IconProps> = (p) => (
 export const ChartBarIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <path d="M3 3v18h18" />
-    <rect x="7" y="13" width="3" height="7" rx="0.5" />
-    <rect x="13" y="8" width="3" height="12" rx="0.5" />
+    <rect x="7" y="14" width="3" height="7" rx="0.5" />
+    <rect x="13" y="9" width="3" height="12" rx="0.5" />
   </IconBase>
 );
 
