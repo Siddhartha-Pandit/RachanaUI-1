@@ -748,7 +748,7 @@ export const FileImageIcon: React.FC<IconProps> = (p) => (
     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
     <polyline points="14 2 14 8 20 8" />
     <circle cx="9.5" cy="13.5" r="1.5" />
-    <polyline points="20 18 15 12.5 9 19" />
+    <polyline points="20 20 15 13.5 9 21" />
   </IconBase>
 );
 
