@@ -609,7 +609,8 @@ export const ArchiveIcon: React.FC<IconProps> = (p) => (
 
 export const RestoreIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <path d="M3 7v6h6M3 13a9 9 0 1 0 2.69-7.69L3 7" />
+    <path d="M3 12A9 9 0 1 0 5.63 5.63L3 8" />
+    <path d="M3 3v5h5" />
   </IconBase>
 );
 
@@ -658,22 +659,22 @@ export const SyncIcon: React.FC<IconProps> = (p) => (
 
 export const UndoIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <path d="M3 7v6h6" />
-    <path d="M3 13A9 9 0 1 0 5.63 5.63" />
+    <path d="M3 12A9 9 0 1 0 5.63 5.63L3 8" />
+    <path d="M3 3v5h5" />
   </IconBase>
 );
 
 export const RedoIcon: React.FC<IconProps> = (p) => (
-  <IconBase {...p}>
-    <path d="M21 7v6h-6" />
-    <path d="M21 13A9 9 0 1 1 18.37 5.63" />
+  <IconBase {...p} flipH>
+    <path d="M3 12A9 9 0 1 0 5.63 5.63L3 8" />
+    <path d="M3 3v5h5" />
   </IconBase>
 );
 
 export const ResetIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <path d="M3 7v6h6" />
-    <path d="M3 13A9 9 0 1 0 5.63 5.63L3 8" />
+    <path d="M3 12A9 9 0 1 0 5.63 5.63L3 8" />
+    <path d="M3 3v5h5" />
     <line x1="12" y1="8" x2="12" y2="12" />
     <circle cx="12" cy="15" r="0.75" fill="currentColor" stroke="none" />
   </IconBase>
@@ -1339,9 +1340,9 @@ export const SortAscIcon: React.FC<IconProps> = (p) => (
 );
 
 export const SortDescIcon: React.FC<IconProps> = (p) => (
-  <IconBase {...p}>
+  <IconBase {...p} flipV>
     <path d="M4 6h14M4 12h9M4 18h4" />
-    <path d="M17 14V4M14 7l3-3 3 3" />
+    <path d="M17 10v10M14 17l3 3 3-3" />
   </IconBase>
 );
 
@@ -1700,7 +1701,7 @@ export const CalendarBsIcon: React.FC<IconProps> = (p) => (
     <line x1="8" y1="2" x2="8" y2="6" />
     <line x1="16" y1="2" x2="16" y2="6" />
     <line x1="3" y1="10" x2="21" y2="10" />
-    <text x="12" y="16" textAnchor="middle" fontSize="3.5" fontWeight="700" fill="currentColor" stroke="none" fontFamily="Noto Sans Devanagari, sans-serif">
+    <text x="12" y="17" textAnchor="middle" fontSize="5" fontWeight="900" fill="currentColor" stroke="none" fontFamily="Noto Sans Devanagari, sans-serif">
       वि.स.
     </text>
   </IconBase>
@@ -1854,8 +1855,8 @@ export const PaymentIcon: React.FC<IconProps> = (p) => (
 
 export const RefundIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
-    <path d="M3 9h6M3 9V5l4.5 4L3 9z" />
-    <path d="M3 9A9 9 0 1 0 6 5.28" />
+    <path d="M3 12A9 9 0 1 0 5.63 5.63L3 8" />
+    <path d="M3 3v5h5" />
   </IconBase>
 );
 
@@ -2420,8 +2421,9 @@ export const CustomerIcon: React.FC<IconProps> = (p) => (
 export const LeadIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <circle cx="10" cy="8" r="4" />
-    <path d="M2 21a8 8 0 0 1 14-5.66" />
-    <path d="M20 3h2v4M21 1v2" />
+    <path d="M2 20c0-4.5 3.5-8 8-8s8 3.5 8 8" />
+    <path d="M19 5h4" />
+    <path d="M21 3v4" />
   </IconBase>
 );
 
