@@ -428,7 +428,7 @@ export const DrawerIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <rect x="3" y="3" width="18" height="18" rx="2" />
     <path d="M3 9h18" />
-    <circle cx="12" cy="15" r="1" fill="currentColor" stroke="none" />
+    <circle cx="12" cy="15" r="2" fill="currentColor" stroke="none" />
   </IconBase>
 );
 
