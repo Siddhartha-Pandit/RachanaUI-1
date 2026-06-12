@@ -1,157 +1,147 @@
 .table-wrapper {
   width: 100%;
-
-  border: 1px solid
-    var(--neutral-200);
-
-  border-radius: var(--radius-xl);
-
-  background: var(--neutral-0);
-
   overflow: hidden;
-
-  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-md);
+  background: var(--neutral-0);
 }
 
 .table-scroll {
   width: 100%;
-
   overflow-x: auto;
-  overflow-y: auto;
-
+  -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
-
-  scrollbar-color:
-    var(--neutral-200)
-    transparent;
+  scrollbar-color: var(--neutral-200) transparent;
 }
 
 .table-scroll::-webkit-scrollbar {
   height: 6px;
-  width: 6px;
+}
+
+.table-scroll::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 .table-scroll::-webkit-scrollbar-thumb {
   background: var(--neutral-200);
-
   border-radius: var(--radius-full);
 }
 
 .table {
   width: 100%;
-
-  min-width: 800px;
-
   border-collapse: separate;
   border-spacing: 0;
+  min-width: 600px;
 }
 
+/* ── Header ── */
 .table-head {
-  position: relative;
-
-  padding:
-    var(--sp-4)
-    var(--sp-4);
-
   background: var(--neutral-50);
-
-  color: var(--neutral-700);
-
-  font-size: 13px;
+  color: var(--neutral-400);
+  font-size: 11px;
   font-weight: 600;
-
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: 1px solid var(--neutral-200);
   white-space: nowrap;
-
-  border-bottom: 1px solid
-    var(--neutral-200);
-
-  z-index: 2;
 }
 
 .table-head-sticky {
   position: sticky;
-
   top: 0;
-
-  z-index: 20;
-}
-
-.table-row {
-  transition:
-    background-color
-      var(--motion-fast)
-      var(--ease-out);
-}
-
-.table-row-striped:nth-child(even) {
-  background: rgba(
-    15,
-    23,
-    42,
-    0.02
-  );
-}
-
-.table-row-hover:hover {
-  background: var(--brand-50);
-}
-
-.table-cell {
-  padding:
-    var(--sp-4)
-    var(--sp-4);
-
-  border-bottom: 1px solid
-    var(--neutral-200);
-
-  color: var(--neutral-700);
-
-  font-size: 14px;
-
-  white-space: nowrap;
-
-  background: inherit;
-}
-
-.table-first-column {
-  position: sticky;
-
-  left: 0;
-
   z-index: 10;
-
-  background: var(--neutral-0);
-
-  box-shadow:
-    1px 0 0
-    var(--neutral-200);
-}
-
-.table-head.table-first-column {
-  z-index: 30;
-
   background: var(--neutral-50);
 }
 
-.table-empty {
-  padding: var(--sp-12);
-
-  text-align: center;
-
-  color: var(--neutral-400);
+.table-head-check {
+  width: 40px;
+  padding-left: var(--sp-3);
+  /* sticky header check cell must also carry the header bg */
+  background: var(--neutral-50);
 }
 
-@media (max-width: 768px) {
-  .table {
-    min-width: 700px;
-  }
+/* ── Sticky first column ── */
+.table-first-column {
+  position: sticky;
+  left: 0;
+  z-index: 5;
+  /* default bg — overridden per-state below */
+  background: var(--neutral-0);
+}
 
-  .table-head,
-  .table-cell {
-    padding:
-      var(--sp-3)
-      var(--sp-3);
+/* Header row: first column sticky cell */
+thead .table-first-column {
+  background: var(--neutral-50);
+  z-index: 11;
+  /* above body sticky cells */
+}
 
-    font-size: 13px;
-  }
+/* ── Rows ── */
+.table-row {
+  background: var(--neutral-0);
+  transition: background var(--motion-base) var(--ease-out);
+}
+
+/* Striped */
+.table-row-striped {
+  background: var(--neutral-50);
+}
+
+.table-row-striped .table-first-column {
+  background: var(--neutral-50);
+}
+
+/* Hover */
+.table-row-hover:hover {
+  background: var(--brand-50) !important;
+}
+
+.table-row-hover:hover .table-first-column {
+  background: var(--brand-50) !important;
+}
+
+/* Selected */
+.table-row-selected {
+  background: var(--brand-50) !important;
+}
+
+.table-row-selected .table-first-column {
+  background: var(--brand-50) !important;
+}
+
+.table-row-selected .table-cell {
+  border-top-color: transparent;
+  border-bottom-color: var(--brand-400);
+}
+
+/* ── Cells ── */
+.table-cell {
+  padding: var(--sp-2) var(--sp-3);
+  border-bottom: 1px solid var(--neutral-200);
+  color: var(--neutral-700);
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: inherit;
+}
+
+.table-cell-check {
+  width: 40px;
+  padding-left: var(--sp-3);
+}
+
+.table-row:last-child .table-cell {
+  border-bottom: none;
+}
+
+/* ── Pagination slot ── */
+.table-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: var(--sp-3) var(--sp-4);
+  border-top: 1px solid var(--neutral-200);
+  background: var(--neutral-0);
 }
