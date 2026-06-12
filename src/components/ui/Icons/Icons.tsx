@@ -1442,7 +1442,11 @@ export const TaxonomyIcon: React.FC<IconProps> = (p) => (
     <line x1="12" y1="6" x2="20" y2="18" />
   </IconBase>
 );
-
+export const ChevronRightIcon: React.FC<IconProps> = (p) => (
+  <IconBase {...p}>
+    <polyline points="9 18 15 12 9 6" />
+  </IconBase>
+);
 export const IndexIcon: React.FC<IconProps> = (p) => (
   <IconBase {...p}>
     <rect x="3" y="3" width="18" height="18" rx="2" />
@@ -2782,7 +2786,7 @@ export const icons = {
   ShareIcon, ExternalLinkIcon, RedirectIcon, ShortcutIcon, HotkeyIcon,
   PrintIcon, QrCodeIcon, BarcodeIcon, ClipboardIcon, ChecklistIcon,
   DividerIcon, SeparatorIcon, SpacerIcon, MoreHorizontalIcon, MoreVerticalIcon,
-  OverflowIcon, BreadcrumbIcon, DotIcon, CircleIcon, SquareIcon, DiamondIcon,
+  OverflowIcon, BreadcrumbIcon, DotIcon, CircleIcon, SquareIcon, DiamondIcon, ChevronRightIcon
 };
 
 export type IconName = keyof typeof icons;
