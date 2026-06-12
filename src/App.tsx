@@ -11,6 +11,7 @@ import Tooltip from "./components/ui/Feedback/Tooltip/Tooltip";
 import Modal from "./components/ui/Feedback/Modal/Modal";
 import Toast from "./components/ui/Feedback/Toast/Toast";
 import Table from "./components/ui/Table/Table";
+import { InfoIcon, CheckIcon, XIcon, AlertTriangleIcon } from "./components/ui/Icons/Icons";
 import Breadcrumb from "./components/ui/Navigation/Breadcrumb/Breadcrumb";
 import Dropdown from "./components/ui/Navigation/Dropdown/Dropdown";
 import Navbar from "./components/ui/Navigation/Navbar/Navbar";

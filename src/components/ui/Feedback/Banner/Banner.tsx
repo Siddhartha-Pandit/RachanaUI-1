@@ -1,4 +1,5 @@
 import "./Banner.css";
+import { InfoIcon, CheckIcon, XIcon, AlertTriangleIcon } from "../../Icons/Icons";
 
 type BannerVariant =
   | "info"
@@ -19,12 +20,12 @@ export default function Banner({
 }: BannerProps) {
   return (
     <div className={`banner banner-${variant}`}>
-      <div className="banner-icon">
-        {variant === "info" && "i"}
-        {variant === "success" && "✓"}
-        {variant === "warning" && "!"}
-        {variant === "danger" && "×"}
-      </div>
+    <div className="banner-icon">
+      {variant === "info" && <InfoIcon />}
+      {variant === "success" && <CheckIcon />}
+      {variant === "warning" && <AlertTriangleIcon />}
+      {variant === "danger" && <XIcon />}
+    </div>
 
       <div className="banner-content">
         {title && (
