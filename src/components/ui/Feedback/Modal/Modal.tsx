@@ -1,4 +1,6 @@
 import "./Modal.css";
+import Button from "../../Buttons/Button";
+import { XIcon } from "../../Icons/Icons";
 
 interface ModalProps {
   open?: boolean;
@@ -39,12 +41,12 @@ export default function Modal({
             )}
           </div>
 
-          <button
+          <Button
             className="modal-close"
             onClick={onClose}
-          >
-            ×
-          </button>
+            style={{ color: "var(--neutral-700)" }} variant="ghost">
+            <XIcon size="sm" />
+          </Button>
         </div>
 
         <div className="modal-body">
