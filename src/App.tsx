@@ -1041,43 +1041,20 @@ function App() {
         </div>
 
         {/* TABS */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "var(--sp-4)",
-          }}
-        >
-          <h3 className="h4">Tabs</h3>
-
-
-          <Tabs defaultValue="overview" variant="underline">
-            <Tabs.List>
-              <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
-              <Tabs.Trigger value="members" badge={24}>Members</Tabs.Trigger>
-              <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
-              <Tabs.Trigger value="api">API</Tabs.Trigger>
-              <Tabs.Trigger value="settings" disabled>Settings</Tabs.Trigger>
-            </Tabs.List>
-
-            <Tabs.Content value="overview">Overview content</Tabs.Content>
-            <Tabs.Content value="members">Members list</Tabs.Content>
-            <Tabs.Content value="billing">Billing details</Tabs.Content>
-            <Tabs.Content value="api">API keys</Tabs.Content>
-          </Tabs>
-          <div
-            style={{
-              padding: "var(--sp-6)",
-              border: "1px solid var(--neutral-200)",
-              borderRadius: "var(--radius-xl)",
-              background: "var(--neutral-0)",
-            }}
-          >
-            <p className="body">
-              Active Tab: <strong>{activeTab}</strong>
-            </p>
-          </div>
-        </div>
+       {(["underline", "default", "pills"] as const).map((variant) => (
+  <div key={variant}>
+    <p>{variant}</p>
+    <Tabs defaultValue="overview" variant={variant}>
+      <Tabs.List>
+        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+        <Tabs.Trigger value="members" badge={24}>Members</Tabs.Trigger>
+        <Tabs.Trigger value="settings" disabled>Settings</Tabs.Trigger>
+      </Tabs.List>
+      <Tabs.Content value="overview">Overview content</Tabs.Content>
+      <Tabs.Content value="members">Members list</Tabs.Content>
+    </Tabs>
+  </div>
+))}
         <Pagination page={page} totalPages={totalPages} onPageChange={setPage}>
           <Pagination.Prev />
 

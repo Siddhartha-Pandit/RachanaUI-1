@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-
+import "./Tabs.css"
 interface TabsContextValue {
   value: string;
   onValueChange: (v: string) => void;
