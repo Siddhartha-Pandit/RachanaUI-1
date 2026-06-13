@@ -592,144 +592,148 @@ function App() {
               <h1 style={{ color: "var(--neutral-700)" }}>Dashboard</h1>
             </main>
           </div>
-          </div>
-          {/* COLLAPSED SIDEBAR */}
+        </div>
+        {/* COLLAPSED SIDEBAR */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--sp-4)",
+          }}
+        >
+          <h3 className="h4">Sidebar</h3>
           <div
             style={{
               display: "flex",
-              flexDirection: "column",
-              gap: "var(--sp-4)",
+              height: "400px",
+              border: "1px solid var(--neutral-200)",
+              borderRadius: "var(--radius-xl)",
+              overflow: "hidden",
             }}
           >
-            <h3 className="h4">Sidebar</h3>
-            <div
-              style={{
-                display: "flex",
-                height: "400px",
-                border: "1px solid var(--neutral-200)",
-                borderRadius: "var(--radius-xl)",
-                overflow: "hidden",
-              }}
-            >
-              <Sidebar
-                activeItem="Dashboard"
-                sections={[
-                  {
-                    label: "Main",
-                    items: [
-                      { label: "Dashboard", icon: DashboardIcon, active: true },
-                      { label: "Workspaces", icon: OrganizationIcon, badge: "1,284" },
-                      { label: "Team members", icon: UsersIcon },
-                      { label: "Analytics", icon: ChartBarIcon },
-                      { label: "Integrations", icon: IntegrationIcon },
-                    ],
-                  },
-                  {
-                    label: "Manage",
-                    items: [
-                      { label: "Billing", icon: CreditCardIcon },
-                      { label: "Security", icon: ShieldIcon },
-                      { label: "Settings", icon: SettingsIcon },
-                    ],
-                  },
-                ]}
-                footer={[
-                  { label: "Help & support", icon: QuestionCircleIcon },
-                  { label: "Sign out", icon: LogoutIcon, danger: true },
-                ]}
-              />
-              <main
-                style={{
-                  flex: 1,
-                  padding: "32px",
-                  background: "var(--neutral-50)",
-                }}
-              >
-                <h1 style={{ color: "var(--neutral-700)" }}>Dashboard</h1>
-              </main>
-            </div>
-
-            <h3 className="h4">Collapsed Sidebar</h3>
-            <div
-              style={{
-                display: "flex",
-                height: "400px",
-                border: "1px solid var(--neutral-200)",
-                borderRadius: "var(--radius-xl)",
-                overflow: "hidden",
-              }}
-            >
-              <Sidebar
-                defaultCollapsed={true}
-                sections={[
-                  {
-                    label: "Main",
-                    items: [
-                      { label: "Dashboard", icon: DashboardIcon },
-                      { label: "Workspaces", icon: OrganizationIcon },
-                      { label: "Analytics", icon: ChartBarIcon },
-                      { label: "Integrations", icon: IntegrationIcon },
-                    ],
-                  },
-                  {
-                    label: "Manage",
-                    items: [
-                      { label: "Billing", icon: CreditCardIcon },
-                      { label: "Settings", icon: SettingsIcon },
-                    ],
-                  },
-                ]}
-                footer={[
-                  { label: "Help & support", icon: QuestionCircleIcon },
-                  { label: "Sign out", icon: LogoutIcon, danger: true },
-                ]}
-              />
-              <main
-                style={{
-                  flex: 1,
-                  padding: "32px",
-                  background: "var(--neutral-50)",
-                }}
-              >
-                <h1 style={{ color: "var(--neutral-700)" }}>Dashboard</h1>
-              </main>
-            </div>
-          </div>
-
-          {/* TABS */}
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              gap: "var(--sp-4)",
-            }}
-          >
-            <h3 className="h4">Tabs</h3>
-
-            <Tabs
-              tabs={[
-                { label: "Overview" },
-                { label: "Analytics" },
-                { label: "Settings" },
-                { label: "Billing" },
+            <Sidebar
+              activeItem="Dashboard"
+              sections={[
+                {
+                  label: "Main",
+                  items: [
+                    { label: "Dashboard", icon: DashboardIcon, active: true },
+                    { label: "Workspaces", icon: OrganizationIcon, badge: "1,284" },
+                    { label: "Team members", icon: UsersIcon },
+                    { label: "Analytics", icon: ChartBarIcon },
+                    { label: "Integrations", icon: IntegrationIcon },
+                  ],
+                },
+                {
+                  label: "Manage",
+                  items: [
+                    { label: "Billing", icon: CreditCardIcon },
+                    { label: "Security", icon: ShieldIcon },
+                    { label: "Settings", icon: SettingsIcon },
+                  ],
+                },
               ]}
-              activeTab={activeTab}
-              onChange={setActiveTab}
+              footer={[
+                { label: "Help & support", icon: QuestionCircleIcon },
+                { label: "Sign out", icon: LogoutIcon, danger: true },
+              ]}
             />
-
-            <div
+            <main
               style={{
-                padding: "var(--sp-6)",
-                border: "1px solid var(--neutral-200)",
-                borderRadius: "var(--radius-xl)",
-                background: "var(--neutral-0)",
+                flex: 1,
+                padding: "32px",
+                background: "var(--neutral-50)",
               }}
             >
-              <p className="body">
-                Active Tab: <strong>{activeTab}</strong>
-              </p>
-            </div>
+              <h1 style={{ color: "var(--neutral-700)" }}>Dashboard</h1>
+            </main>
           </div>
+
+          <h3 className="h4">Collapsed Sidebar</h3>
+          <div
+            style={{
+              display: "flex",
+              height: "400px",
+              border: "1px solid var(--neutral-200)",
+              borderRadius: "var(--radius-xl)",
+              overflow: "hidden",
+            }}
+          >
+            <Sidebar
+              defaultCollapsed={true}
+              sections={[
+                {
+                  label: "Main",
+                  items: [
+                    { label: "Dashboard", icon: DashboardIcon },
+                    { label: "Workspaces", icon: OrganizationIcon },
+                    { label: "Analytics", icon: ChartBarIcon },
+                    { label: "Integrations", icon: IntegrationIcon },
+                  ],
+                },
+                {
+                  label: "Manage",
+                  items: [
+                    { label: "Billing", icon: CreditCardIcon },
+                    { label: "Settings", icon: SettingsIcon },
+                  ],
+                },
+              ]}
+              footer={[
+                { label: "Help & support", icon: QuestionCircleIcon },
+                { label: "Sign out", icon: LogoutIcon, danger: true },
+              ]}
+            />
+            <main
+              style={{
+                flex: 1,
+                padding: "32px",
+                background: "var(--neutral-50)",
+              }}
+            >
+              <h1 style={{ color: "var(--neutral-700)" }}>Dashboard</h1>
+            </main>
+          </div>
+        </div>
+
+        {/* TABS */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--sp-4)",
+          }}
+        >
+          <h3 className="h4">Tabs</h3>
+
+
+          <Tabs defaultValue="overview" variant="underline">
+            <Tabs.List>
+              <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+              <Tabs.Trigger value="members" badge={24}>Members</Tabs.Trigger>
+              <Tabs.Trigger value="billing">Billing</Tabs.Trigger>
+              <Tabs.Trigger value="api">API</Tabs.Trigger>
+              <Tabs.Trigger value="settings" disabled>Settings</Tabs.Trigger>
+            </Tabs.List>
+
+            <Tabs.Content value="overview">Overview content</Tabs.Content>
+            <Tabs.Content value="members">Members list</Tabs.Content>
+            <Tabs.Content value="billing">Billing details</Tabs.Content>
+            <Tabs.Content value="api">API keys</Tabs.Content>
+          </Tabs>
+          <div
+            style={{
+              padding: "var(--sp-6)",
+              border: "1px solid var(--neutral-200)",
+              borderRadius: "var(--radius-xl)",
+              background: "var(--neutral-0)",
+            }}
+          >
+            <p className="body">
+              Active Tab: <strong>{activeTab}</strong>
+            </p>
+          </div>
+        </div>
       </section>
     </main>
   );
