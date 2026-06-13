@@ -1,5 +1,5 @@
 import { useState, createContext, useContext } from "react";
-import type { ReactNode, CSSProperties, FC } from "react";
+import type { ReactNode, CSSProperties } from "react";
 import "./Table.css";
 import Checkboxes from "../Forms/Checkboxes/Checkboxes";
 
