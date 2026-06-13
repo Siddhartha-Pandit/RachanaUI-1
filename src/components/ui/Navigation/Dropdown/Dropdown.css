@@ -1,68 +1,76 @@
 .dropdown-root {
   position: relative;
-  display: inline-flex;
+  display: inline-block;
+  overflow: visible;
 }
 
 .dropdown-trigger {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--sp-2);
+
   background: transparent;
   border: none;
+  padding: 0;
+
   cursor: pointer;
+
   font-family: var(--font-family-sans);
   font-size: 14px;
   font-weight: 400;
   color: var(--neutral-700);
-  padding: 0;
-  transition: color var(--motion-fast) var(--ease-out);
+
+  transition:
+    color var(--motion-fast) var(--ease-out),
+    opacity var(--motion-fast) var(--ease-out);
+}
+
+.dropdown-trigger:hover {
+  opacity: 0.85;
 }
 
 .dropdown-trigger:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 3px var(--brand-50);
   border-radius: var(--radius-md);
+  box-shadow: 0 0 0 3px var(--brand-50);
 }
 
+/*
+  position: fixed is applied inline via JS-computed coords.
+  Do NOT set position, top, left, or transform here —
+  those are all handled in the component style prop.
+*/
 .dropdown-content {
-  position: absolute;
-  z-index: var(--z-dropdown, 500);
-  top: calc(100% + var(--sp-2));
+  min-width: 200px;
+  width: max-content;
+  max-width: 320px;
+
   background: var(--neutral-0);
+
   border: 1px solid var(--neutral-200);
   border-radius: var(--radius-lg);
+
   box-shadow: var(--shadow-lg);
+
   padding: var(--sp-1) 0;
-  animation: ddFadeScale var(--motion-slow) var(--ease-out);
+
+  overflow: hidden;
+
+  z-index: 9999;
+
+  animation: dropdownFadeIn 0.15s ease-out;
 }
 
-.dropdown-content--start {
-  left: 0;
-}
-
-.dropdown-content--center {
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.dropdown-content--end {
-  right: 0;
-}
-
-.dropdown-content--top {
-  top: auto;
-  bottom: calc(100% + var(--sp-2));
-}
-
-@keyframes ddFadeScale {
+@keyframes dropdownFadeIn {
   from {
     opacity: 0;
-    transform: scale(0.97) translateY(-4px);
+    translate: 0 -4px;
   }
 
   to {
     opacity: 1;
-    transform: scale(1) translateY(0);
+    translate: 0 0;
   }
 }
 
@@ -70,20 +78,36 @@
   display: flex;
   align-items: center;
   gap: var(--sp-2);
+
   width: 100%;
+
   padding: var(--sp-2) var(--sp-3);
+
   background: transparent;
   border: none;
+
   font-family: var(--font-family-sans);
   font-size: 14px;
   font-weight: 400;
+
   color: var(--neutral-700);
-  cursor: pointer;
+
   text-align: left;
-  transition: background var(--motion-fast) var(--ease-out);
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background var(--motion-fast) var(--ease-out),
+    color var(--motion-fast) var(--ease-out);
 }
 
 .dropdown-item:hover:not(:disabled) {
+  background: var(--neutral-50);
+}
+
+.dropdown-item:focus-visible {
+  outline: none;
   background: var(--neutral-50);
 }
 
@@ -97,21 +121,20 @@
 
 .dropdown-item--disabled {
   opacity: 0.45;
-  cursor: not-allowed;
   pointer-events: none;
-}
-
-.dropdown-item:focus-visible {
-  outline: none;
-  background: var(--neutral-50);
+  cursor: not-allowed;
 }
 
 .dropdown-item-icon {
   display: inline-flex;
   align-items: center;
-  color: var(--neutral-400);
-  font-size: 16px;
+  justify-content: center;
+
   flex-shrink: 0;
+
+  font-size: 16px;
+
+  color: var(--neutral-400);
 }
 
 .dropdown-item--danger .dropdown-item-icon {
@@ -123,29 +146,37 @@
 }
 
 .dropdown-item-shortcut {
+  margin-left: auto;
+
+  padding: 1px 6px;
+
   font-family: var(--font-family-mono);
   font-size: 11px;
+
   color: var(--neutral-400);
+
   background: var(--neutral-50);
   border: 1px solid var(--neutral-200);
   border-radius: var(--radius-sm);
-  padding: 1px 5px;
-  margin-left: auto;
 }
 
 .dropdown-label {
-  padding: var(--sp-2) var(--sp-3) var(--sp-1);
+  padding: var(--sp-2) var(--sp-3);
+
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 600;
+
   text-transform: uppercase;
-  letter-spacing: 0.6px;
+  letter-spacing: 0.06em;
+
   color: var(--neutral-400);
 }
 
 .dropdown-separator {
   height: 1px;
-  background: var(--neutral-200);
   margin: var(--sp-1) 0;
+
+  background: var(--neutral-200);
 }
 
 [data-theme="dark"] .dropdown-content {
@@ -167,11 +198,12 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .dropdown-content {
+    animation: none;
+  }
 
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    transition: none !important;
+  .dropdown-trigger,
+  .dropdown-item {
+    transition: none;
   }
 }

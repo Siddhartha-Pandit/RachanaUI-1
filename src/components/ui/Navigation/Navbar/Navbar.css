@@ -5,6 +5,8 @@
   top: 0;
   z-index: var(--z-sticky, 200);
   flex-shrink: 0;
+
+  overflow: visible;
 }
 
 .navbar--default {
@@ -27,21 +29,28 @@
   display: flex;
   align-items: center;
   height: 100%;
+
   padding: 0 var(--sp-6);
   gap: var(--sp-4);
+
   max-width: 1280px;
   margin: 0 auto;
+
+  overflow: visible;
 }
 
 .navbar-brand {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-3);
+
   text-decoration: none;
   flex-shrink: 0;
+
   color: var(--neutral-700);
   font-size: 16px;
   font-weight: 500;
+
   transition: opacity var(--motion-fast) var(--ease-out);
 }
 
@@ -54,6 +63,8 @@
   display: flex;
   align-items: center;
   gap: var(--sp-1);
+
+  overflow: visible;
 }
 
 .navbar-content--start {
@@ -72,19 +83,27 @@
 .navbar-item {
   display: inline-flex;
   align-items: center;
+
+  position: relative;
+  overflow: visible;
 }
 
 .navbar-link {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
+
   height: 36px;
   padding: 0 var(--sp-3);
+
   border-radius: var(--radius-md);
+
   font-size: 14px;
   font-weight: 400;
+
   color: var(--neutral-400);
   text-decoration: none;
+
   transition:
     background var(--motion-fast) var(--ease-out),
     color var(--motion-fast) var(--ease-out);
@@ -110,8 +129,11 @@
 .navbar-separator {
   width: 1px;
   height: 20px;
+
   background: var(--neutral-200);
+
   margin: 0 var(--sp-2);
+
   flex-shrink: 0;
 }
 

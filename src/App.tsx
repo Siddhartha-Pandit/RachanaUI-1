@@ -534,7 +534,6 @@ function App() {
 
           <div
             style={{
-              borderRadius: "var(--radius-xl)",
               overflow: "hidden",
               border: "1px solid var(--neutral-200)",
             }}

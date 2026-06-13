@@ -1,4 +1,4 @@
-import { createContext } from "react";
+import React, { createContext } from "react";
 import "./Navbar.css";
 
 interface NavbarContextValue {
@@ -59,7 +59,9 @@ function NavbarContent({
   className = "",
 }: NavbarContentProps) {
   return (
-    <div className={`navbar-content navbar-content--${align} ${className}`}>
+    <div
+      className={`navbar-content navbar-content--${align} ${className}`}
+    >
       {children}
     </div>
   );
@@ -114,7 +116,9 @@ function NavbarLink({
         "navbar-link",
         active ? "navbar-link--active" : "",
         className,
-      ].filter(Boolean).join(" ")}
+      ]
+        .filter(Boolean)
+        .join(" ")}
     >
       {children}
     </a>
@@ -125,8 +129,12 @@ interface NavbarSeparatorProps {
   className?: string;
 }
 
-function NavbarSeparator({ className = "" }: NavbarSeparatorProps) {
-  return <div className={`navbar-separator ${className}`} />;
+function NavbarSeparator({
+  className = "",
+}: NavbarSeparatorProps) {
+  return (
+    <div className={`navbar-separator ${className}`} />
+  );
 }
 
 Navbar.Brand = NavbarBrand;
