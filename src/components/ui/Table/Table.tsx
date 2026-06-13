@@ -3,9 +3,6 @@ import type { ReactNode, CSSProperties, FC } from "react";
 import "./Table.css";
 import Checkboxes from "../Forms/Checkboxes/Checkboxes";
 
-/* ─────────────────────────────────────────────
-   CONTEXT
-───────────────────────────────────────────── */
 interface TableContextValue {
   stickyHeader: boolean;
   stickyFirstColumn: boolean;
@@ -29,9 +26,6 @@ const useTableContext = () => {
   return ctx;
 };
 
-/* ─────────────────────────────────────────────
-   TYPES
-───────────────────────────────────────────── */
 export interface TableColumn {
   key: string;
   title: string;
@@ -54,9 +48,6 @@ export interface TableProps {
   style?: CSSProperties;
 }
 
-/* ─────────────────────────────────────────────
-   ROOT
-───────────────────────────────────────────── */
 function TableRoot({
   columns,
   data,
@@ -112,44 +103,29 @@ function TableRoot({
   );
 }
 
-/* ─────────────────────────────────────────────
-   SCROLL CONTAINER
-───────────────────────────────────────────── */
 function TableScroll({ children }: { children: ReactNode }) {
   return <div className="table-scroll">{children}</div>;
 }
 
-/* ─────────────────────────────────────────────
-   TABLE ELEMENT
-───────────────────────────────────────────── */
 function TableElement({ children }: { children: ReactNode }) {
   return <table className="table">{children}</table>;
 }
 
-/* ─────────────────────────────────────────────
-   HEADER
-───────────────────────────────────────────── */
 function TableHeader() {
-  const { columns, stickyHeader, stickyFirstColumn, selectable, allSelected, someSelected, toggleAll } =
-    useTableContext();
+  const {
+    columns, stickyHeader, stickyFirstColumn,
+    selectable, allSelected, someSelected, toggleAll,
+  } = useTableContext();
+
+  // checkbox column is 44px wide; first data column left offset accounts for it
+  const firstColLeft = selectable ? "44px" : "0px";
 
   return (
     <thead>
       <tr>
         {selectable && (
-          <th
-            className={[
-              "table-head table-head-check",
-              stickyHeader ? "table-head-sticky" : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-          >
-            <Checkboxes
-              checked={allSelected}
-              indeterminate={someSelected}
-              onChange={toggleAll}
-            />
+          <th className={["table-head", "table-head-check", stickyHeader ? "table-head-sticky" : ""].filter(Boolean).join(" ")}>
+            <Checkboxes checked={allSelected} indeterminate={someSelected} onChange={toggleAll} />
           </th>
         )}
         {columns.map((col, i) => (
@@ -159,10 +135,12 @@ function TableHeader() {
               "table-head",
               stickyHeader ? "table-head-sticky" : "",
               stickyFirstColumn && i === 0 ? "table-first-column" : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
-            style={{ width: col.width, textAlign: col.align || "left" }}
+            ].filter(Boolean).join(" ")}
+            style={{
+              width: col.width,
+              textAlign: col.align || "left",
+              left: stickyFirstColumn && i === 0 ? firstColLeft : undefined,
+            }}
           >
             {col.title}
           </th>
@@ -172,25 +150,16 @@ function TableHeader() {
   );
 }
 
-/* ─────────────────────────────────────────────
-   BODY
-───────────────────────────────────────────── */
 function TableBody({ children }: { children?: ReactNode }) {
   const {
-    columns,
-    visibleData,
-    striped,
-    hoverable,
-    selectable,
-    stickyFirstColumn,
-    selectedRows,
-    toggleRow,
+    columns, visibleData, striped, hoverable,
+    selectable, stickyFirstColumn, selectedRows, toggleRow,
   } = useTableContext();
 
-  // If children are passed, render them directly (custom rows)
+  const firstColLeft = selectable ? "44px" : "0px";
+
   if (children) return <tbody>{children}</tbody>;
 
-  // Auto-render from data
   return (
     <tbody>
       {visibleData.map((row, rowIndex) => {
@@ -203,9 +172,7 @@ function TableBody({ children }: { children?: ReactNode }) {
               striped && rowIndex % 2 !== 0 ? "table-row-striped" : "",
               hoverable ? "table-row-hover" : "",
               isSelected ? "table-row-selected" : "",
-            ]
-              .filter(Boolean)
-              .join(" ")}
+            ].filter(Boolean).join(" ")}
           >
             {selectable && (
               <td className="table-cell table-cell-check">
@@ -221,10 +188,11 @@ function TableBody({ children }: { children?: ReactNode }) {
                 className={[
                   "table-cell",
                   stickyFirstColumn && colIndex === 0 ? "table-first-column" : "",
-                ]
-                  .filter(Boolean)
-                  .join(" ")}
-                style={{ textAlign: col.align || "left" }}
+                ].filter(Boolean).join(" ")}
+                style={{
+                  textAlign: col.align || "left",
+                  left: stickyFirstColumn && colIndex === 0 ? firstColLeft : undefined,
+                }}
               >
                 {row[col.key]}
               </td>
@@ -236,9 +204,6 @@ function TableBody({ children }: { children?: ReactNode }) {
   );
 }
 
-/* ─────────────────────────────────────────────
-   ROW
-───────────────────────────────────────────── */
 interface TableRowProps {
   children: ReactNode;
   index?: number;
@@ -249,7 +214,6 @@ interface TableRowProps {
 
 function TableRow({ children, index = 0, selected, className = "", onClick }: TableRowProps) {
   const { striped, hoverable } = useTableContext();
-
   return (
     <tr
       className={[
@@ -258,9 +222,7 @@ function TableRow({ children, index = 0, selected, className = "", onClick }: Ta
         hoverable ? "table-row-hover" : "",
         selected ? "table-row-selected" : "",
         className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      ].filter(Boolean).join(" ")}
       onClick={onClick}
     >
       {children}
@@ -268,9 +230,6 @@ function TableRow({ children, index = 0, selected, className = "", onClick }: Ta
   );
 }
 
-/* ─────────────────────────────────────────────
-   CELL
-───────────────────────────────────────────── */
 interface TableCellProps {
   children?: ReactNode;
   align?: "left" | "center" | "right";
@@ -282,13 +241,7 @@ interface TableCellProps {
 function TableCell({ children, align = "left", sticky, className = "", style }: TableCellProps) {
   return (
     <td
-      className={[
-        "table-cell",
-        sticky ? "table-first-column" : "",
-        className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      className={["table-cell", sticky ? "table-first-column" : "", className].filter(Boolean).join(" ")}
       style={{ textAlign: align, ...style }}
     >
       {children}
@@ -296,9 +249,6 @@ function TableCell({ children, align = "left", sticky, className = "", style }: 
   );
 }
 
-/* ─────────────────────────────────────────────
-   HEAD CELL
-───────────────────────────────────────────── */
 interface TableHeadCellProps {
   children?: ReactNode;
   align?: "left" | "center" | "right";
@@ -309,7 +259,6 @@ interface TableHeadCellProps {
 
 function TableHeadCell({ children, align = "left", width, sticky, className = "" }: TableHeadCellProps) {
   const { stickyHeader } = useTableContext();
-
   return (
     <th
       className={[
@@ -317,9 +266,7 @@ function TableHeadCell({ children, align = "left", width, sticky, className = ""
         stickyHeader ? "table-head-sticky" : "",
         sticky ? "table-first-column" : "",
         className,
-      ]
-        .filter(Boolean)
-        .join(" ")}
+      ].filter(Boolean).join(" ")}
       style={{ textAlign: align, width }}
     >
       {children}
@@ -327,20 +274,13 @@ function TableHeadCell({ children, align = "left", width, sticky, className = ""
   );
 }
 
-/* ─────────────────────────────────────────────
-   FOOTER / PAGINATION SLOT
-───────────────────────────────────────────── */
 function TableFooter({ children }: { children: ReactNode }) {
   return <div className="table-pagination">{children}</div>;
 }
 
-/* ─────────────────────────────────────────────
-   EMPTY STATE
-───────────────────────────────────────────── */
 function TableEmpty({ message = "No data available" }: { message?: string }) {
   const { columns, selectable } = useTableContext();
   const colSpan = columns.length + (selectable ? 1 : 0);
-
   return (
     <tbody>
       <tr>
@@ -352,12 +292,8 @@ function TableEmpty({ message = "No data available" }: { message?: string }) {
   );
 }
 
-/* ─────────────────────────────────────────────
-   LOADING STATE
-───────────────────────────────────────────── */
 function TableSkeleton({ rows = 5 }: { rows?: number }) {
   const { columns, selectable } = useTableContext();
-
   return (
     <tbody>
       {Array.from({ length: rows }).map((_, rowIndex) => (
@@ -369,10 +305,7 @@ function TableSkeleton({ rows = 5 }: { rows?: number }) {
           )}
           {columns.map((col) => (
             <td key={col.key} className="table-cell">
-              <div
-                className="table-skeleton-box"
-                style={{ width: `${50 + Math.random() * 40}%`, height: 14 }}
-              />
+              <div className="table-skeleton-box" style={{ width: `${50 + Math.random() * 40}%`, height: 14 }} />
             </td>
           ))}
         </tr>
@@ -381,18 +314,7 @@ function TableSkeleton({ rows = 5 }: { rows?: number }) {
   );
 }
 
-/* ─────────────────────────────────────────────
-   PAGINATION INFO HELPER
-───────────────────────────────────────────── */
-function TablePaginationInfo({
-  page,
-  pageSize,
-  total,
-}: {
-  page: number;
-  pageSize: number;
-  total: number;
-}) {
+function TablePaginationInfo({ page, pageSize, total }: { page: number; pageSize: number; total: number }) {
   const from = Math.min((page - 1) * pageSize + 1, total);
   const to = Math.min(page * pageSize, total);
   return (
@@ -402,9 +324,6 @@ function TablePaginationInfo({
   );
 }
 
-/* ─────────────────────────────────────────────
-   COMPOUND EXPORT
-───────────────────────────────────────────── */
 export const Table = Object.assign(TableRoot, {
   Scroll: TableScroll,
   Element: TableElement,
