@@ -508,15 +508,18 @@ function App() {
         >
           <h3 className="h4">Dropdown</h3>
 
-          <Dropdown
-            trigger={<Button variant="outline">Open Dropdown</Button>}
-            items={[
-              { label: "Profile" },
-              { label: "Settings" },
-              { label: "Billing" },
-              { label: "Logout" },
-            ]}
-          />
+          <Dropdown>
+            <Dropdown.Trigger>
+              <Button variant="outline">Open Dropdown</Button>
+            </Dropdown.Trigger>
+
+            <Dropdown.Content>
+              <Dropdown.Item>Profile</Dropdown.Item>
+              <Dropdown.Item>Settings</Dropdown.Item>
+              <Dropdown.Item>Billing</Dropdown.Item>
+              <Dropdown.Item>Logout</Dropdown.Item>
+            </Dropdown.Content>
+          </Dropdown>
         </div>
 
         {/* NAVBAR */}
@@ -536,15 +539,90 @@ function App() {
               border: "1px solid var(--neutral-200)",
             }}
           >
-            <Navbar logo={<div style={{ fontWeight: 700 }}>SaaS UI</div>}>
-              <Dropdown
-                trigger={<Button variant="ghost">Account</Button>}
-                items={[
-                  { label: "My Profile" },
-                  { label: "Settings" },
-                  { label: "Logout" },
-                ]}
-              />
+            <Navbar variant="bordered">
+              <Navbar.Content align="start">
+                <Navbar.Brand>
+                  MyApp
+                </Navbar.Brand>
+              </Navbar.Content>
+
+              <Navbar.Content align="center">
+                <Navbar.Item>
+                  <Navbar.Link active>
+                    Dashboard
+                  </Navbar.Link>
+                </Navbar.Item>
+
+                <Navbar.Item>
+                  <Navbar.Link>
+                    Projects
+                  </Navbar.Link>
+                </Navbar.Item>
+
+                <Navbar.Item>
+                  <Dropdown>
+                    <Dropdown.Trigger>
+                      More ▾
+                    </Dropdown.Trigger>
+
+                    <Dropdown.Content align="start">
+                      <Dropdown.Item>
+                        Team
+                      </Dropdown.Item>
+
+                      <Dropdown.Item>
+                        Analytics
+                      </Dropdown.Item>
+
+                      <Dropdown.Item>
+                        Reports
+                      </Dropdown.Item>
+
+                      <Dropdown.Separator />
+
+                      <Dropdown.Item>
+                        Settings
+                      </Dropdown.Item>
+                    </Dropdown.Content>
+                  </Dropdown>
+                </Navbar.Item>
+              </Navbar.Content>
+
+              <Navbar.Content align="end">
+                <Dropdown>
+                  <Dropdown.Trigger>
+                    <Button variant="outline">
+                      Account
+                    </Button>
+                  </Dropdown.Trigger>
+
+                  <Dropdown.Content align="end">
+                    <Dropdown.Label>
+                      My Account
+                    </Dropdown.Label>
+
+                    <Dropdown.Separator />
+
+                    <Dropdown.Item>
+                      Profile
+                    </Dropdown.Item>
+
+                    <Dropdown.Item>
+                      Billing
+                    </Dropdown.Item>
+
+                    <Dropdown.Item>
+                      Settings
+                    </Dropdown.Item>
+
+                    <Dropdown.Separator />
+
+                    <Dropdown.Item variant="danger">
+                      Logout
+                    </Dropdown.Item>
+                  </Dropdown.Content>
+                </Dropdown>
+              </Navbar.Content>
             </Navbar>
           </div>
         </div>
