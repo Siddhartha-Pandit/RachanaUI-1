@@ -1,0 +1,286 @@
+/* ────────────────────────────────────────────────────────────────────────────
+   Avatar — Nexus Design System
+   Color contract:
+     --avatar-bg      → hsl(H, 65%, 88%)   pastel background  (per-user)
+     --avatar-fg      → hsl(H, 75%, 28%)   dark text          (same hue, darker)
+     --avatar-border  → hsl(H, 50%, 78%)   subtle ring        (same hue, mid)
+   All sizes, status, group, and interactive states are handled below.
+──────────────────────────────────────────────────────────────────────────── */
+
+/* ── ROOT ── */
+
+.avatar {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: var(--avatar-size);
+  height: var(--avatar-size);
+  border-radius: var(--radius-full);
+
+  background: var(--avatar-bg);
+  border: 1.5px solid var(--avatar-border);
+
+  overflow: visible; /* allow status dot to bleed out */
+  user-select: none;
+  vertical-align: middle;
+
+  transition:
+    box-shadow var(--motion-fast) var(--ease-out),
+    transform var(--motion-fast) var(--ease-out);
+}
+
+/* ── IMAGE ── */
+
+.avatar__image {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  object-fit: cover;
+  display: block;
+}
+
+/* ── INITIALS ── */
+
+.avatar__initials {
+  font-family: var(--font-family-sans);
+  font-size: var(--avatar-font);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--avatar-fg);
+  letter-spacing: 0.02em;
+  pointer-events: none;
+}
+
+/* ── STATUS DOT ── */
+
+.avatar__status {
+  position: absolute;
+  bottom: var(--avatar-status-offset);
+  right: var(--avatar-status-offset);
+
+  width: var(--avatar-status-size);
+  height: var(--avatar-status-size);
+  border-radius: var(--radius-full);
+
+  /* white ring separates dot from avatar */
+  box-shadow: 0 0 0 2px var(--neutral-0);
+
+  /* pulse for "online" is handled via a modifier if needed */
+  transition: background var(--motion-base) var(--ease-out);
+}
+
+/* ── INTERACTIVE ── */
+
+.avatar--interactive {
+  cursor: pointer;
+}
+
+.avatar--interactive:hover {
+  box-shadow: 0 0 0 3px rgba(34, 113, 230, 0.14);
+}
+
+.avatar--interactive:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(34, 113, 230, 0.22);
+}
+
+.avatar--interactive:active {
+  transform: scale(0.95);
+}
+
+/* ── SIZE VARIANTS ──
+   Sizes are driven entirely by CSS custom properties set inline.
+   The explicit size classes exist for specificity correctness only —
+   the actual values come from the inline style vars.
+────────────────────────────────────────────────────────────────────────── */
+
+.avatar--xs  { border-width: 1px; }
+.avatar--sm  { border-width: 1.5px; }
+.avatar--md  { border-width: 1.5px; }
+.avatar--lg  { border-width: 2px; }
+.avatar--xl  { border-width: 2px; }
+.avatar--2xl { border-width: 2.5px; }
+
+/* ── GROUP ── */
+
+.avatar-group {
+  display: inline-flex;
+  align-items: center;
+}
+
+.avatar-group__item {
+  display: inline-flex;
+  margin-left: calc(var(--avatar-size) * -0.3);
+  transition: transform var(--motion-fast) var(--ease-out);
+}
+
+.avatar-group__item:first-child {
+  margin-left: 0;
+}
+
+/* Raise on hover for discoverability */
+.avatar-group:hover .avatar-group__item:hover {
+  transform: translateY(-2px);
+  z-index: 10;
+}
+
+/* Stacking: last item on top by default */
+.avatar-group__item:nth-child(1)  { z-index: 8; }
+.avatar-group__item:nth-child(2)  { z-index: 7; }
+.avatar-group__item:nth-child(3)  { z-index: 6; }
+.avatar-group__item:nth-child(4)  { z-index: 5; }
+.avatar-group__item:nth-child(5)  { z-index: 4; }
+.avatar-group__item:nth-child(6)  { z-index: 3; }
+.avatar-group__item:nth-child(7)  { z-index: 2; }
+.avatar-group__item:nth-child(8)  { z-index: 1; }
+
+/* Overflow pill */
+.avatar-group__overflow {
+  /* Neutral palette for the +N pill — no user color */
+  --avatar-bg: var(--neutral-50);
+  --avatar-fg: var(--neutral-400);
+  --avatar-border: var(--neutral-200);
+  margin-left: calc(var(--avatar-size) * -0.3);
+  z-index: 0;
+}
+
+.avatar__initials--overflow {
+  color: var(--neutral-400);
+  font-size: calc(var(--avatar-font) * 0.9);
+}
+
+/* ── DARK MODE ──
+   The avatar colors (hsl bg/fg) are already device-agnostic.
+   Only the status ring and group border need dark mode overrides.
+────────────────────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] .avatar__status {
+  box-shadow: 0 0 0 2px var(--neutral-50); /* match dark surface */
+}
+
+[data-theme="dark"] .avatar-group__overflow {
+  --avatar-bg: rgba(255, 255, 255, 0.06);
+  --avatar-fg: var(--neutral-400);
+  --avatar-border: var(--neutral-200);
+}
+
+/* ── REDUCED MOTION ── */
+
+@media (prefers-reduced-motion: reduce) {
+  .avatar,
+  .avatar-group__item {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+
+/* ────────────────────────────────────────────────────────────────────────────
+   DEMO PAGE STYLES
+   Only used in the AvatarDemo export, not shipped with the component.
+──────────────────────────────────────────────────────────────────────────── */
+
+.demo {
+  max-width: 720px;
+  padding: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-8);
+}
+
+.demo__title {
+  color: var(--neutral-700);
+  margin: 0;
+}
+
+.demo__desc {
+  color: var(--neutral-400);
+  margin: calc(var(--sp-2) * -1) 0 0;
+}
+
+.demo__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.demo__label {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--neutral-400);
+  margin: 0;
+}
+
+.demo__row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.demo__row--labels {
+  gap: var(--sp-4);
+  margin-top: var(--sp-1);
+}
+
+.demo__status-label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-size: 13px;
+  color: var(--neutral-400);
+}
+
+.demo__status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+}
+
+.demo__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--sp-3);
+}
+
+.demo__user-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-3);
+  border: 1px solid var(--neutral-200);
+  border-radius: var(--radius-lg);
+  background: var(--neutral-0);
+  transition: box-shadow var(--motion-fast) var(--ease-out);
+}
+
+.demo__user-row:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.demo__user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.demo__user-info .body {
+  color: var(--neutral-700);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.demo__email {
+  color: var(--neutral-400);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
