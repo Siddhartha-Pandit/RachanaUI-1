@@ -15,7 +15,7 @@ import { InfoIcon, CheckIcon, XIcon, AlertTriangleIcon } from "./components/ui/I
 import Breadcrumb from "./components/ui/Navigation/Breadcrumb/Breadcrumb";
 import Dropdown from "./components/ui/Navigation/Dropdown/Dropdown";
 import Navbar from "./components/ui/Navigation/Navbar/Navbar";
-import Sidebar from "./components/ui/Navigation/Sidebar/Sidebar";
+import { SidebarAdapter, Sidebar } from "./components/ui/Navigation/Sidebar/Sidebar";
 import Tabs from "./components/ui/Navigation/Tabs/Tabs";
 import { useState } from "react";
 import AllIconsPage from "./pages/AllIconsPage";
@@ -695,7 +695,7 @@ function App() {
               overflow: "hidden",
             }}
           >
-            <Sidebar
+            <SidebarAdapter
               activeItem="Dashboard"
               sections={[
                 {
@@ -758,7 +758,7 @@ function App() {
               overflow: "hidden",
             }}
           >
-            <Sidebar
+            <SidebarAdapter
               defaultCollapsed={true}
               sections={[
                 {
@@ -804,241 +804,241 @@ function App() {
         </div>
 
         {/* SIDEBAR — Full width */}
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    gap: "var(--sp-4)",
-  }}
->
-  <h3 className="h4">Sidebar</h3>
-  <div
-    style={{
-      display: "flex",
-      height: "480px",
-      border: "1px solid var(--neutral-200)",
-      borderRadius: "var(--radius-xl)",
-      overflow: "hidden",
-    }}
-  >
-    <Sidebar
-      activeItem="Dashboard"
-      sections={[
-        {
-          label: "Main",
-          items: [
-            { label: "Dashboard", icon: DashboardIcon, active: true },
-            { label: "Workspaces", icon: OrganizationIcon, badge: "1,284" },
-            { label: "Team members", icon: UsersIcon },
-            { label: "Analytics", icon: ChartBarIcon },
-            { label: "Integrations", icon: IntegrationIcon },
-          ],
-        },
-        {
-          label: "Manage",
-          items: [
-            { label: "Billing", icon: CreditCardIcon },
-            { label: "Security", icon: ShieldIcon },
-            { label: "Settings", icon: SettingsIcon },
-          ],
-        },
-      ]}
-      footer={[
-        { label: "Help & support", icon: QuestionCircleIcon },
-        { label: "Sign out", icon: LogoutIcon, danger: true },
-      ]}
-    />
-    <main
-      style={{
-        flex: 1,
-        padding: "32px",
-        background: "var(--neutral-50)",
-        overflowY: "auto",
-      }}
-    >
-      <h1 className="h2" style={{ color: "var(--neutral-700)", marginBottom: "var(--sp-2)" }}>
-        Dashboard
-      </h1>
-      <p className="body-sm" style={{ color: "var(--neutral-400)" }}>
-        Welcome back. Here's what's happening today.
-      </p>
-    </main>
-  </div>
-</div>
-
-{/* SIDEBAR — Collapsed by default */}
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    gap: "var(--sp-4)",
-  }}
->
-  <h3 className="h4">Collapsed Sidebar</h3>
-  <div
-    style={{
-      display: "flex",
-      height: "480px",
-      border: "1px solid var(--neutral-200)",
-      borderRadius: "var(--radius-xl)",
-      overflow: "hidden",
-    }}
-  >
-    <Sidebar
-      defaultCollapsed={true}
-      sections={[
-        {
-          label: "Main",
-          items: [
-            { label: "Dashboard", icon: DashboardIcon, active: true },
-            { label: "Workspaces", icon: OrganizationIcon, badge: "1,284" },
-            { label: "Team members", icon: UsersIcon },
-            { label: "Analytics", icon: ChartBarIcon },
-            { label: "Integrations", icon: IntegrationIcon },
-          ],
-        },
-        {
-          label: "Manage",
-          items: [
-            { label: "Billing", icon: CreditCardIcon },
-            { label: "Security", icon: ShieldIcon },
-            { label: "Settings", icon: SettingsIcon },
-          ],
-        },
-      ]}
-      footer={[
-        { label: "Help & support", icon: QuestionCircleIcon },
-        { label: "Sign out", icon: LogoutIcon, danger: true },
-      ]}
-    />
-    <main
-      style={{
-        flex: 1,
-        padding: "32px",
-        background: "var(--neutral-50)",
-        overflowY: "auto",
-      }}
-    >
-      <h1 className="h2" style={{ color: "var(--neutral-700)", marginBottom: "var(--sp-2)" }}>
-        Dashboard
-      </h1>
-      <p className="body-sm" style={{ color: "var(--neutral-400)" }}>
-        Welcome back. Here's what's happening today.
-      </p>
-    </main>
-  </div>
-</div>
-
-{/* SIDEBAR — Compound API with nested children */}
-<div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    gap: "var(--sp-4)",
-  }}
->
-  <h3 className="h4">Sidebar with nested items</h3>
-  <div
-    style={{
-      display: "flex",
-      height: "480px",
-      border: "1px solid var(--neutral-200)",
-      borderRadius: "var(--radius-xl)",
-      overflow: "hidden",
-    }}
-  >
-    {(() => {
-      const [collapsed, setCollapsed] = useState(false);
-      return (
-        <>
-          <Sidebar
-            collapsed={collapsed}
-            onCollapsedChange={setCollapsed}
-            activeItem="Overview"
-          >
-            <Sidebar.Header>
-              <Sidebar.Brand>Nexus</Sidebar.Brand>
-              <Sidebar.Trigger onClick={() => setCollapsed((v) => !v)} />
-            </Sidebar.Header>
-
-            <Sidebar.Content>
-              <Sidebar.Group label="Main">
-                <Sidebar.Menu>
-                  <Sidebar.MenuItem
-                    label="Dashboard"
-                    icon={DashboardIcon}
-                    active
-                  />
-                  <Sidebar.MenuItem
-                    label="Workspaces"
-                    icon={OrganizationIcon}
-                    badge="1,284"
-                  />
-                  <Sidebar.MenuItem
-                    label="Analytics"
-                    icon={ChartBarIcon}
-                  >
-                    <Sidebar.MenuSubItem label="Overview" active />
-                    <Sidebar.MenuSubItem label="Reports" />
-                    <Sidebar.MenuSubItem label="Exports" />
-                  </Sidebar.MenuItem>
-                  <Sidebar.MenuItem
-                    label="Integrations"
-                    icon={IntegrationIcon}
-                  />
-                </Sidebar.Menu>
-              </Sidebar.Group>
-
-              <Sidebar.Group label="Manage">
-                <Sidebar.Menu>
-                  <Sidebar.MenuItem label="Billing" icon={CreditCardIcon} />
-                  <Sidebar.MenuItem label="Security" icon={ShieldIcon} />
-                  <Sidebar.MenuItem label="Settings" icon={SettingsIcon} />
-                </Sidebar.Menu>
-              </Sidebar.Group>
-
-              <Sidebar.Footer>
-                <Sidebar.Menu>
-                  <Sidebar.MenuItem
-                    label="Help & support"
-                    icon={QuestionCircleIcon}
-                  />
-                  <Sidebar.MenuItem
-                    label="Sign out"
-                    icon={LogoutIcon}
-                    danger
-                  />
-                </Sidebar.Menu>
-              </Sidebar.Footer>
-            </Sidebar.Content>
-          </Sidebar>
-
-          <main
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--sp-4)",
+          }}
+        >
+          <h3 className="h4">Sidebar</h3>
+          <div
             style={{
-              flex: 1,
-              padding: "32px",
-              background: "var(--neutral-50)",
-              overflowY: "auto",
+              display: "flex",
+              height: "480px",
+              border: "1px solid var(--neutral-200)",
+              borderRadius: "var(--radius-xl)",
+              overflow: "hidden",
             }}
           >
-            <h1
-              className="h2"
+            <SidebarAdapter
+              activeItem="Dashboard"
+              sections={[
+                {
+                  label: "Main",
+                  items: [
+                    { label: "Dashboard", icon: DashboardIcon, active: true },
+                    { label: "Workspaces", icon: OrganizationIcon, badge: "1,284" },
+                    { label: "Team members", icon: UsersIcon },
+                    { label: "Analytics", icon: ChartBarIcon },
+                    { label: "Integrations", icon: IntegrationIcon },
+                  ],
+                },
+                {
+                  label: "Manage",
+                  items: [
+                    { label: "Billing", icon: CreditCardIcon },
+                    { label: "Security", icon: ShieldIcon },
+                    { label: "Settings", icon: SettingsIcon },
+                  ],
+                },
+              ]}
+              footer={[
+                { label: "Help & support", icon: QuestionCircleIcon },
+                { label: "Sign out", icon: LogoutIcon, danger: true },
+              ]}
+            />
+            <main
               style={{
-                color: "var(--neutral-700)",
-                marginBottom: "var(--sp-2)",
+                flex: 1,
+                padding: "32px",
+                background: "var(--neutral-50)",
+                overflowY: "auto",
               }}
             >
-              Overview
-            </h1>
-            <p className="body-sm" style={{ color: "var(--neutral-400)" }}>
-              Analytics overview page.
-            </p>
-          </main>
-        </>
-      );
-    })()}
-  </div>
-</div>
+              <h1 className="h2" style={{ color: "var(--neutral-700)", marginBottom: "var(--sp-2)" }}>
+                Dashboard
+              </h1>
+              <p className="body-sm" style={{ color: "var(--neutral-400)" }}>
+                Welcome back. Here's what's happening today.
+              </p>
+            </main>
+          </div>
+        </div>
+
+        {/* SIDEBAR — Collapsed by default */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--sp-4)",
+          }}
+        >
+          <h3 className="h4">Collapsed Sidebar</h3>
+          <div
+            style={{
+              display: "flex",
+              height: "480px",
+              border: "1px solid var(--neutral-200)",
+              borderRadius: "var(--radius-xl)",
+              overflow: "hidden",
+            }}
+          >
+            <SidebarAdapter
+              defaultCollapsed={true}
+              sections={[
+                {
+                  label: "Main",
+                  items: [
+                    { label: "Dashboard", icon: DashboardIcon, active: true },
+                    { label: "Workspaces", icon: OrganizationIcon, badge: "1,284" },
+                    { label: "Team members", icon: UsersIcon },
+                    { label: "Analytics", icon: ChartBarIcon },
+                    { label: "Integrations", icon: IntegrationIcon },
+                  ],
+                },
+                {
+                  label: "Manage",
+                  items: [
+                    { label: "Billing", icon: CreditCardIcon },
+                    { label: "Security", icon: ShieldIcon },
+                    { label: "Settings", icon: SettingsIcon },
+                  ],
+                },
+              ]}
+              footer={[
+                { label: "Help & support", icon: QuestionCircleIcon },
+                { label: "Sign out", icon: LogoutIcon, danger: true },
+              ]}
+            />
+            <main
+              style={{
+                flex: 1,
+                padding: "32px",
+                background: "var(--neutral-50)",
+                overflowY: "auto",
+              }}
+            >
+              <h1 className="h2" style={{ color: "var(--neutral-700)", marginBottom: "var(--sp-2)" }}>
+                Dashboard
+              </h1>
+              <p className="body-sm" style={{ color: "var(--neutral-400)" }}>
+                Welcome back. Here's what's happening today.
+              </p>
+            </main>
+          </div>
+        </div>
+
+        {/* SIDEBAR — Compound API with nested children */}
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "var(--sp-4)",
+          }}
+        >
+          <h3 className="h4">Sidebar with nested items</h3>
+          <div
+            style={{
+              display: "flex",
+              height: "480px",
+              border: "1px solid var(--neutral-200)",
+              borderRadius: "var(--radius-xl)",
+              overflow: "hidden",
+            }}
+          >
+            {(() => {
+              const [collapsed, setCollapsed] = useState(false);
+              return (
+                <>
+                  <Sidebar
+                    collapsed={collapsed}
+                    onCollapsedChange={setCollapsed}
+                    activeItem="Overview"
+                  >
+                    <Sidebar.Header>
+                      <Sidebar.Brand>Nexus</Sidebar.Brand>
+                      <Sidebar.Trigger onClick={() => setCollapsed((v) => !v)} />
+                    </Sidebar.Header>
+
+                    <Sidebar.Content>
+                      <Sidebar.Group label="Main">
+                        <Sidebar.Menu>
+                          <Sidebar.MenuItem
+                            label="Dashboard"
+                            icon={DashboardIcon}
+                            active
+                          />
+                          <Sidebar.MenuItem
+                            label="Workspaces"
+                            icon={OrganizationIcon}
+                            badge="1,284"
+                          />
+                          <Sidebar.MenuItem
+                            label="Analytics"
+                            icon={ChartBarIcon}
+                          >
+                            <Sidebar.MenuSubItem label="Overview" active />
+                            <Sidebar.MenuSubItem label="Reports" />
+                            <Sidebar.MenuSubItem label="Exports" />
+                          </Sidebar.MenuItem>
+                          <Sidebar.MenuItem
+                            label="Integrations"
+                            icon={IntegrationIcon}
+                          />
+                        </Sidebar.Menu>
+                      </Sidebar.Group>
+
+                      <Sidebar.Group label="Manage">
+                        <Sidebar.Menu>
+                          <Sidebar.MenuItem label="Billing" icon={CreditCardIcon} />
+                          <Sidebar.MenuItem label="Security" icon={ShieldIcon} />
+                          <Sidebar.MenuItem label="Settings" icon={SettingsIcon} />
+                        </Sidebar.Menu>
+                      </Sidebar.Group>
+
+                      <Sidebar.Footer>
+                        <Sidebar.Menu>
+                          <Sidebar.MenuItem
+                            label="Help & support"
+                            icon={QuestionCircleIcon}
+                          />
+                          <Sidebar.MenuItem
+                            label="Sign out"
+                            icon={LogoutIcon}
+                            danger
+                          />
+                        </Sidebar.Menu>
+                      </Sidebar.Footer>
+                    </Sidebar.Content>
+                  </Sidebar>
+
+                  <main
+                    style={{
+                      flex: 1,
+                      padding: "32px",
+                      background: "var(--neutral-50)",
+                      overflowY: "auto",
+                    }}
+                  >
+                    <h1
+                      className="h2"
+                      style={{
+                        color: "var(--neutral-700)",
+                        marginBottom: "var(--sp-2)",
+                      }}
+                    >
+                      Overview
+                    </h1>
+                    <p className="body-sm" style={{ color: "var(--neutral-400)" }}>
+                      Analytics overview page.
+                    </p>
+                  </main>
+                </>
+              );
+            })()}
+          </div>
+        </div>
 
         {/* TABS */}
         <div
