@@ -32,6 +32,7 @@ import {
   LogoutIcon,
 } from "./components/ui/Icons/Icons"
 import Pagination, { usePagination } from "./components/ui/Navigation/Pagination/Pagination";
+
 function App() {
   const [checked, setChecked] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -40,7 +41,49 @@ function App() {
   const [showAllIcons, setShowAllIcons] = useState(false);
   const [page, setPage] = useState(1);
   const totalPages = 20;
+  const [selectedIndices, setSelectedIndices] = useState<number[]>([]);
+  const [tablePage, setTablePage] = useState(1);
 
+  const PAGE_SIZE = 5;
+
+  const ALL_DATA = [
+    { id: "WS-001", name: "Acme Corp", domain: "acme.nexus.io", members: 24, plan: "Growth", storage: "87%", status: "Active", joined: "Jan 8, 2024" },
+    { id: "WS-002", name: "Globex Inc", domain: "globex.nexus.io", members: 8, plan: "Starter", storage: "32%", status: "Active", joined: "Mar 14, 2024" },
+    { id: "WS-003", name: "Stark Co", domain: "stark.nexus.io", members: 51, plan: "Enterprise", storage: "96%", status: "Overdue", joined: "Nov 2, 2023" },
+    { id: "WS-004", name: "Wayne Inc", domain: "wayne.nexus.io", members: 3, plan: "Starter", storage: "8%", status: "Inactive", joined: "Sep 19, 2024" },
+    { id: "WS-005", name: "Umbrella Ltd", domain: "umbrella.nexus.io", members: 17, plan: "Growth", storage: "54%", status: "Active", joined: "Feb 3, 2024" },
+    { id: "WS-006", name: "Initech", domain: "initech.nexus.io", members: 6, plan: "Starter", storage: "21%", status: "Active", joined: "Apr 22, 2024" },
+    { id: "WS-007", name: "Hooli", domain: "hooli.nexus.io", members: 89, plan: "Enterprise", storage: "73%", status: "Active", joined: "Dec 1, 2023" },
+    { id: "WS-008", name: "Pied Piper", domain: "piedpiper.nexus.io", members: 5, plan: "Starter", storage: "11%", status: "Inactive", joined: "Jul 9, 2024" },
+    { id: "WS-009", name: "Dunder Mifflin", domain: "dunder.nexus.io", members: 33, plan: "Growth", storage: "61%", status: "Active", joined: "Oct 15, 2023" },
+    { id: "WS-010", name: "Vandelay Ind", domain: "vandelay.nexus.io", members: 12, plan: "Growth", storage: "44%", status: "Active", joined: "May 30, 2024" },
+    { id: "WS-011", name: "Bluth Co", domain: "bluth.nexus.io", members: 9, plan: "Starter", storage: "19%", status: "Overdue", joined: "Aug 7, 2024" },
+    { id: "WS-012", name: "Massive Dynamic", domain: "massive.nexus.io", members: 142, plan: "Enterprise", storage: "88%", status: "Active", joined: "Jan 20, 2024" },
+    { id: "WS-013", name: "Soylent Corp", domain: "soylent.nexus.io", members: 7, plan: "Starter", storage: "5%", status: "Inactive", joined: "Jun 11, 2024" },
+    { id: "WS-014", name: "Gekko & Co", domain: "gekko.nexus.io", members: 28, plan: "Growth", storage: "70%", status: "Active", joined: "Mar 3, 2024" },
+    { id: "WS-015", name: "Prestige World", domain: "prestige.nexus.io", members: 4, plan: "Starter", storage: "3%", status: "Active", joined: "Nov 28, 2023" },
+  ];
+
+  const COLUMNS = [
+    { key: "name", title: "Workspace", width: "180px" },
+    { key: "members", title: "Members", width: "90px", align: "right" as const },
+    { key: "plan", title: "Plan", width: "120px" },
+    { key: "storage", title: "Storage", width: "130px" },
+    { key: "status", title: "Status", width: "120px" },
+    { key: "joined", title: "Joined", width: "130px" },
+    { key: "domain", title: "Domain", width: "200px" },
+    { key: "id", title: "ID", width: "100px" },
+  ];
+
+  const tableTotal = ALL_DATA.length;
+  const tableTotalPages = Math.ceil(tableTotal / PAGE_SIZE);
+  const visibleData = ALL_DATA.slice((tablePage - 1) * PAGE_SIZE, tablePage * PAGE_SIZE);
+  const tableRange = usePagination({ page: tablePage, totalPages: tableTotalPages, siblings: 1 });
+
+  const handleTablePageChange = (p: number) => {
+    setTablePage(p);
+    setSelectedIndices([]);
+  };
   const range = usePagination({ page, totalPages, siblings: 1 });
   return showAllIcons ? (
     <AllIconsPage onBack={() => setShowAllIcons(false)} />
@@ -398,6 +441,7 @@ function App() {
       </section>
 
       {/* TABLE */}
+      {/* TABLE */}
       <section
         style={{
           display: "flex",
@@ -408,64 +452,66 @@ function App() {
         <div>
           <h2 className="h2 mb-4">Table</h2>
           <p className="body-sm">
-            Responsive table with sticky header, sticky first column, horizontal
-            scroll, hover states, and striped rows.
+            Compound table with frozen header row, frozen first column,
+            striped rows, row selection, and built-in pagination.
           </p>
         </div>
 
+        {selectedIndices.length > 0 && (
+          <div style={{
+            fontSize: 13,
+            color: "var(--brand-400)",
+            fontWeight: 500,
+            padding: "var(--sp-2) var(--sp-3)",
+            background: "var(--brand-50)",
+            borderRadius: "var(--radius-md)",
+          }}>
+            {selectedIndices.length} row{selectedIndices.length > 1 ? "s" : ""} selected
+          </div>
+        )}
+
         <Table
+          columns={COLUMNS}
+          data={visibleData}
           stickyHeader
           stickyFirstColumn
           striped
           hoverable
-          columns={[
-            { key: "name", title: "Name", width: "220px" },
-            { key: "email", title: "Email", width: "260px" },
-            { key: "role", title: "Role", width: "180px" },
-            { key: "status", title: "Status", width: "160px" },
-            { key: "team", title: "Team", width: "180px" },
-            { key: "country", title: "Country", width: "180px" },
-            { key: "created", title: "Created", width: "180px" },
-          ]}
-          data={[
-            {
-              name: "Ranjit Singh",
-              email: "ranjit@example.com",
-              role: "Frontend Developer",
-              status: "Active",
-              team: "Design System",
-              country: "Nepal",
-              created: "21 May 2026",
-            },
-            {
-              name: "John Doe",
-              email: "john@example.com",
-              role: "Backend Engineer",
-              status: "Pending",
-              team: "API",
-              country: "USA",
-              created: "18 May 2026",
-            },
-            {
-              name: "Sarah Lee",
-              email: "sarah@example.com",
-              role: "UI Designer",
-              status: "Active",
-              team: "Product",
-              country: "Canada",
-              created: "12 May 2026",
-            },
-            {
-              name: "Aman Verma",
-              email: "aman@example.com",
-              role: "DevOps",
-              status: "Inactive",
-              team: "Infrastructure",
-              country: "India",
-              created: "10 May 2026",
-            },
-          ]}
-        />
+          selectable
+          onSelectionChange={setSelectedIndices}
+        >
+          <Table.Scroll>
+            <Table.Element>
+              <Table.Header />
+              <Table.Body />
+            </Table.Element>
+          </Table.Scroll>
+
+          <Table.Footer>
+            <Table.PaginationInfo
+              page={tablePage}
+              pageSize={PAGE_SIZE}
+              total={tableTotal}
+            />
+            <Pagination
+              page={tablePage}
+              totalPages={tableTotalPages}
+              onPageChange={handleTablePageChange}
+            >
+              <Pagination.Prev />
+              <Pagination.List>
+                {tableRange.map((item) =>
+                  item === "ellipsis-start" || item === "ellipsis-end" ? (
+                    <Pagination.Ellipsis key={item} />
+                  ) : (
+                    <Pagination.Item key={item} page={item} />
+                  )
+                )}
+              </Pagination.List>
+              <Pagination.Next />
+            </Pagination>
+          </Table.Footer>
+        </Table>
       </section>
 
       {/* NAVIGATION */}
