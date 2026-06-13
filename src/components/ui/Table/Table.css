@@ -55,6 +55,16 @@
   background: var(--neutral-50);
 }
 
+/* Vertical dividers between header cells */
+.table-head+.table-head {
+  border-left: 1px solid var(--neutral-200);
+}
+
+/* No extra border after checkbox — handled by ::after pseudo */
+.table-head-check+.table-head {
+  border-left: none;
+}
+
 /* ── Checkbox column ── */
 .table-head-check,
 .table-cell-check {
@@ -94,7 +104,7 @@
   cursor: pointer;
 }
 
-/* Checkbox column divider */
+/* Checkbox column right divider */
 .table-head-check::after,
 .table-cell-check::after {
   content: "";
@@ -158,7 +168,7 @@ thead .table-first-column::after {
   background: var(--neutral-50);
 }
 
-/* Hover — no transition on sticky cells to prevent delay */
+/* Hover */
 .table-row-hover:hover {
   background: var(--brand-50);
 }
@@ -192,6 +202,16 @@ thead .table-first-column::after {
   overflow: hidden;
   text-overflow: ellipsis;
   vertical-align: middle;
+}
+
+/* Vertical dividers between body cells */
+.table-cell+.table-cell {
+  border-left: 1px solid var(--neutral-200);
+}
+
+/* No extra border after checkbox — handled by ::after pseudo */
+.table-cell-check+.table-cell {
+  border-left: none;
 }
 
 .table-row:last-child .table-cell {
