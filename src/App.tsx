@@ -32,7 +32,7 @@ import {
   LogoutIcon,
 } from "./components/ui/Icons/Icons"
 import Pagination, { usePagination } from "./components/ui/Navigation/Pagination/Pagination";
-
+import Avatar from "./components/ui/Avatar/Avatar";
 function App() {
   const [checked, setChecked] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
@@ -79,7 +79,16 @@ function App() {
   const tableTotalPages = Math.ceil(tableTotal / PAGE_SIZE);
   const visibleData = ALL_DATA.slice((tablePage - 1) * PAGE_SIZE, tablePage * PAGE_SIZE);
   const tableRange = usePagination({ page: tablePage, totalPages: tableTotalPages, siblings: 1 });
-
+  const USERS = [
+    { name: "Alice Johnson", email: "alice@nexus.io", status: "online" as const },
+    { name: "Bob Martinez", email: "bob@nexus.io", status: "away" as const },
+    { name: "Carol White", email: "carol@nexus.io", status: "busy" as const },
+    { name: "David Kim", email: "david@nexus.io", status: "offline" as const },
+    { name: "Eve Nakamura", email: "eve@nexus.io", status: "online" as const },
+    { name: "Frank O'Brien", email: "frank@nexus.io", status: "away" as const },
+    { name: "Grace Liu", email: "grace@nexus.io", status: "online" as const },
+    { name: "Henry Osei", email: "henry@nexus.io", status: "busy" as const },
+  ];
   const handleTablePageChange = (p: number) => {
     setTablePage(p);
     setSelectedIndices([]);
@@ -1041,20 +1050,20 @@ function App() {
         </div>
 
         {/* TABS */}
-       {(["underline", "default", "pills"] as const).map((variant) => (
-  <div key={variant}>
-    <p>{variant}</p>
-    <Tabs defaultValue="overview" variant={variant}>
-      <Tabs.List>
-        <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
-        <Tabs.Trigger value="members" badge={24}>Members</Tabs.Trigger>
-        <Tabs.Trigger value="settings" disabled>Settings</Tabs.Trigger>
-      </Tabs.List>
-      <Tabs.Content value="overview">Overview content</Tabs.Content>
-      <Tabs.Content value="members">Members list</Tabs.Content>
-    </Tabs>
-  </div>
-))}
+        {(["underline", "default", "pills"] as const).map((variant) => (
+          <div key={variant}>
+            <p>{variant}</p>
+            <Tabs defaultValue="overview" variant={variant}>
+              <Tabs.List>
+                <Tabs.Trigger value="overview">Overview</Tabs.Trigger>
+                <Tabs.Trigger value="members" badge={24}>Members</Tabs.Trigger>
+                <Tabs.Trigger value="settings" disabled>Settings</Tabs.Trigger>
+              </Tabs.List>
+              <Tabs.Content value="overview">Overview content</Tabs.Content>
+              <Tabs.Content value="members">Members list</Tabs.Content>
+            </Tabs>
+          </div>
+        ))}
         <Pagination page={page} totalPages={totalPages} onPageChange={setPage}>
           <Pagination.Prev />
 
@@ -1071,6 +1080,166 @@ function App() {
           <Pagination.Next />
         </Pagination>
       </section>
+      <div style={{ padding: "var(--sp-8)", display: "flex", flexDirection: "column", gap: "var(--sp-8)", maxWidth: 720 }}>
+
+        {/* ── Sizes ── */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "var(--sp-3)" }}>
+          <p className="label" style={{ color: "var(--neutral-400)" }}>Sizes</p>
+          <div style={{ display: "flex", alignItems: "flex-end", gap: "var(--sp-4)" }}>
+            {(["xs", "sm", "md", "lg", "xl", "2xl"] as const).map((s) => (
+              <div key={s} style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "var(--sp-2)" }}>
+                <Avatar name="Alice Johnson" size={s} />
+                <span className="caption" style={{ color: "var(--neutral-400)" }}>{s}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div style={{ height: 1, background: "var(--neutral-200)" }} />
+
+        {/* ── Image with fallback ── */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "var(--sp-3)" }}>
+          <p className="label" style={{ color: "var(--neutral-400)" }}>Image → fallback on error</p>
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-4)" }}>
+            <Avatar name="Alice Johnson" src="https://i.pravatar.cc/150?img=1" size="lg" />
+            <Avatar name="Bob Martinez" src="https://i.pravatar.cc/150?img=3" size="lg" />
+            <Avatar name="Carol White" src="https://broken.png" size="lg" />
+            <Avatar email="david@nexus.io" src="https://broken.png" size="lg" />
+          </div>
+        </section>
+
+        <div style={{ height: 1, background: "var(--neutral-200)" }} />
+
+        {/* ── Status indicators ── */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "var(--sp-3)" }}>
+          <p className="label" style={{ color: "var(--neutral-400)" }}>Status indicators</p>
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-4)" }}>
+            <Avatar name="Alice Johnson" size="lg" status="online" />
+            <Avatar name="Bob Martinez" size="lg" status="away" />
+            <Avatar name="Carol White" size="lg" status="busy" />
+            <Avatar name="David Kim" size="lg" status="offline" />
+          </div>
+        </section>
+
+        <div style={{ height: 1, background: "var(--neutral-200)" }} />
+
+        {/* ── Interactive ── */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "var(--sp-3)" }}>
+          <p className="label" style={{ color: "var(--neutral-400)" }}>Interactive (clickable)</p>
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-4)" }}>
+            {USERS.slice(0, 4).map((u) => (
+              <Avatar
+                key={u.email}
+                name={u.name}
+                size="lg"
+                status={u.status}
+                onClick={() => alert(`Clicked: ${u.name}`)}
+              />
+            ))}
+          </div>
+        </section>
+
+        <div style={{ height: 1, background: "var(--neutral-200)" }} />
+
+        {/* ── Avatar Group ── */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "var(--sp-3)" }}>
+          <p className="label" style={{ color: "var(--neutral-400)" }}>Avatar group</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "var(--sp-4)" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-4)" }}>
+              <span className="body-sm" style={{ color: "var(--neutral-400)", width: 24 }}>sm</span>
+              <Avatar.Group max={5} size="sm">
+                {USERS.map((u) => <Avatar key={u.email} name={u.name} size="sm" />)}
+              </Avatar.Group>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-4)" }}>
+              <span className="body-sm" style={{ color: "var(--neutral-400)", width: 24 }}>md</span>
+              <Avatar.Group max={5} size="md">
+                {USERS.map((u) => <Avatar key={u.email} name={u.name} size="md" />)}
+              </Avatar.Group>
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-4)" }}>
+              <span className="body-sm" style={{ color: "var(--neutral-400)", width: 24 }}>lg</span>
+              <Avatar.Group max={4} size="lg">
+                {USERS.map((u) => <Avatar key={u.email} name={u.name} size="lg" />)}
+              </Avatar.Group>
+            </div>
+          </div>
+        </section>
+
+        <div style={{ height: 1, background: "var(--neutral-200)" }} />
+
+        {/* ── User list (real-world usage) ── */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "var(--sp-3)" }}>
+          <p className="label" style={{ color: "var(--neutral-400)" }}>Real-world — team member list</p>
+          <div
+            style={{
+              border: "1px solid var(--neutral-200)",
+              borderRadius: "var(--radius-xl)",
+              overflow: "hidden",
+              background: "var(--neutral-0)",
+            }}
+          >
+            {USERS.map((u, i) => (
+              <div
+                key={u.email}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  padding: "var(--sp-3) var(--sp-4)",
+                  borderBottom: i < USERS.length - 1 ? "1px solid var(--neutral-200)" : "none",
+                }}
+              >
+                <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-3)" }}>
+                  <Avatar name={u.name} email={u.email} size="md" status={u.status} />
+                  <div style={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                    <span className="body" style={{ fontWeight: 500, color: "var(--neutral-700)" }}>{u.name}</span>
+                    <span className="caption" style={{ color: "var(--neutral-400)" }}>{u.email}</span>
+                  </div>
+                </div>
+                <span
+                  style={{
+                    fontSize: 11,
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.5px",
+                    padding: "2px 8px",
+                    borderRadius: "var(--radius-full)",
+                    background: u.status === "online" ? "var(--success-50)"
+                      : u.status === "busy" ? "#fef2f2"
+                        : u.status === "away" ? "#fff8ec"
+                          : "var(--neutral-50)",
+                    color: u.status === "online" ? "var(--success-400)"
+                      : u.status === "busy" ? "var(--danger-400)"
+                        : u.status === "away" ? "var(--warning-400)"
+                          : "var(--neutral-400)",
+                    border: `1px solid ${u.status === "online" ? "rgba(18,183,106,0.2)"
+                        : u.status === "busy" ? "rgba(217,45,32,0.2)"
+                          : u.status === "away" ? "rgba(247,144,9,0.2)"
+                            : "var(--neutral-200)"
+                      }`,
+                  }}
+                >
+                  {u.status}
+                </span>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <div style={{ height: 1, background: "var(--neutral-200)" }} />
+
+        {/* ── Email-only ── */}
+        <section style={{ display: "flex", flexDirection: "column", gap: "var(--sp-3)" }}>
+          <p className="label" style={{ color: "var(--neutral-400)" }}>Email-only identifiers</p>
+          <div style={{ display: "flex", alignItems: "center", gap: "var(--sp-3)" }}>
+            {["zara@corp.com", "quinn@team.io", "ivan@saas.co", "nadia@work.dev"].map((e) => (
+              <Avatar key={e} email={e} size="lg" />
+            ))}
+          </div>
+        </section>
+
+      </div>
     </main>
   );
 }
