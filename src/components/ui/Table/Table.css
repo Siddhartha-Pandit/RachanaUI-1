@@ -57,7 +57,6 @@
 .table-head-check {
   width: 40px;
   padding-left: var(--sp-3);
-  /* sticky header check cell must also carry the header bg */
   background: var(--neutral-50);
 }
 
@@ -66,15 +65,12 @@
   position: sticky;
   left: 0;
   z-index: 5;
-  /* default bg — overridden per-state below */
   background: var(--neutral-0);
 }
 
-/* Header row: first column sticky cell */
 thead .table-first-column {
   background: var(--neutral-50);
   z-index: 11;
-  /* above body sticky cells */
 }
 
 /* ── Rows ── */
@@ -83,7 +79,6 @@ thead .table-first-column {
   transition: background var(--motion-base) var(--ease-out);
 }
 
-/* Striped */
 .table-row-striped {
   background: var(--neutral-50);
 }
@@ -92,7 +87,6 @@ thead .table-first-column {
   background: var(--neutral-50);
 }
 
-/* Hover */
 .table-row-hover:hover {
   background: var(--brand-50) !important;
 }
@@ -101,7 +95,6 @@ thead .table-first-column {
   background: var(--brand-50) !important;
 }
 
-/* Selected */
 .table-row-selected {
   background: var(--brand-50) !important;
 }
@@ -141,7 +134,16 @@ thead .table-first-column {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  gap: var(--sp-4);
   padding: var(--sp-3) var(--sp-4);
   border-top: 1px solid var(--neutral-200);
   background: var(--neutral-0);
+}
+
+.table-pagination-info {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--neutral-400);
+  white-space: nowrap;
+  margin-right: auto;
 }

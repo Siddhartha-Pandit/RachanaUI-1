@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Table.css";
 import Checkboxes from "../Forms/Checkboxes/Checkboxes";
+import Pagination, { usePagination } from "../Navigation/Pagination/Pagination";
 
 interface TableColumn {
   key: string;
@@ -19,6 +20,10 @@ interface TableProps {
   hoverable?: boolean;
   selectable?: boolean;
   onSelectionChange?: (selectedIndices: number[]) => void;
+  pageSize?: number;
+  page?: number;
+  totalPages?: number;
+  onPageChange?: (page: number) => void;
   paginationSlot?: React.ReactNode;
 }
 
@@ -31,15 +36,45 @@ export default function Table({
   hoverable = true,
   selectable = true,
   onSelectionChange,
+  pageSize,
+  page: externalPage,
+  totalPages: externalTotalPages,
+  onPageChange: externalOnPageChange,
   paginationSlot,
 }: TableProps) {
+  const [internalPage, setInternalPage] = useState(1);
+
+  const isInternal = pageSize !== undefined && externalPage === undefined;
+  const isExternal = externalPage !== undefined && externalTotalPages !== undefined;
+
+  const page = isInternal ? internalPage : (externalPage ?? 1);
+  const totalPages = isInternal
+    ? Math.max(1, Math.ceil(data.length / pageSize!))
+    : (externalTotalPages ?? 1);
+
+  const handlePageChange = (p: number) => {
+    if (isInternal) {
+      setInternalPage(p);
+      setSelectedRows(new Set());
+      onSelectionChange?.([]);
+    } else {
+      externalOnPageChange?.(p);
+    }
+  };
+
+  const visibleData = isInternal
+    ? data.slice((page - 1) * pageSize!, page * pageSize!)
+    : data;
+
   const [selectedRows, setSelectedRows] = useState<Set<number>>(new Set());
 
-  const allSelected = data.length > 0 && selectedRows.size === data.length;
+  const allSelected = visibleData.length > 0 && selectedRows.size === visibleData.length;
   const someSelected = selectedRows.size > 0 && !allSelected;
 
   const toggleAll = (checked: boolean) => {
-    const next = checked ? new Set(data.map((_, i) => i)) : new Set<number>();
+    const next = checked
+      ? new Set(visibleData.map((_, i) => i))
+      : new Set<number>();
     setSelectedRows(next);
     onSelectionChange?.(Array.from(next));
   };
@@ -50,6 +85,9 @@ export default function Table({
     setSelectedRows(next);
     onSelectionChange?.(Array.from(next));
   };
+
+  const range = usePagination({ page, totalPages, siblings: 1 });
+  const showBuiltInPagination = !paginationSlot && (isInternal || isExternal) && totalPages > 1;
 
   return (
     <div className="table-wrapper">
@@ -87,7 +125,7 @@ export default function Table({
           </thead>
 
           <tbody>
-            {data.map((row, rowIndex) => {
+            {visibleData.map((row, rowIndex) => {
               const isSelected = selectedRows.has(rowIndex);
               return (
                 <tr
@@ -132,8 +170,34 @@ export default function Table({
         </table>
       </div>
 
+      {/* Mode C — custom slot */}
       {paginationSlot && (
         <div className="table-pagination">{paginationSlot}</div>
+      )}
+
+      {/* Mode A & B — built-in pagination */}
+      {showBuiltInPagination && (
+        <div className="table-pagination">
+          {isInternal && (
+            <span className="table-pagination-info">
+              {Math.min((page - 1) * pageSize! + 1, data.length)}–
+              {Math.min(page * pageSize!, data.length)} of {data.length}
+            </span>
+          )}
+          <Pagination page={page} totalPages={totalPages} onPageChange={handlePageChange}>
+            <Pagination.Prev />
+            <Pagination.List>
+              {range.map((item) =>
+                item === "ellipsis-start" || item === "ellipsis-end" ? (
+                  <Pagination.Ellipsis key={item} />
+                ) : (
+                  <Pagination.Item key={item} page={item} />
+                )
+              )}
+            </Pagination.List>
+            <Pagination.Next />
+          </Pagination>
+        </div>
       )}
     </div>
   );

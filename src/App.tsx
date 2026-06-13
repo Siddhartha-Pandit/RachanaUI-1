@@ -31,13 +31,17 @@ import {
   QuestionCircleIcon,
   LogoutIcon,
 } from "./components/ui/Icons/Icons"
+import Pagination, { usePagination } from "./components/ui/Navigation/Pagination/Pagination";
 function App() {
   const [checked, setChecked] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [toggle, setToggle] = useState(false);
   const [activeTab, setActiveTab] = useState("Overview");
   const [showAllIcons, setShowAllIcons] = useState(false);
+  const [page, setPage] = useState(1);
+  const totalPages = 20;
 
+  const range = usePagination({ page, totalPages, siblings: 1 });
   return showAllIcons ? (
     <AllIconsPage onBack={() => setShowAllIcons(false)} />
   ) : (
@@ -811,6 +815,21 @@ function App() {
             </p>
           </div>
         </div>
+        <Pagination page={page} totalPages={totalPages} onPageChange={setPage}>
+          <Pagination.Prev />
+
+          <Pagination.List>
+            {range.map((item) =>
+              item === "ellipsis-start" || item === "ellipsis-end" ? (
+                <Pagination.Ellipsis key={item} />
+              ) : (
+                <Pagination.Item key={item} page={item} />
+              )
+            )}
+          </Pagination.List>
+
+          <Pagination.Next />
+        </Pagination>
       </section>
     </main>
   );

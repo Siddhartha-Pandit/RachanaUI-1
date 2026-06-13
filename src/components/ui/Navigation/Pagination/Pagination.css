@@ -1,0 +1,139 @@
+/* ─── Root ──────────────────────────────────────────────────────────────── */
+
+.pagination-root {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+}
+
+/* ─── List ──────────────────────────────────────────────────────────────── */
+
+.pagination-list {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* ─── Shared button base ─────────────────────────────────────────────────── */
+
+.pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--sp-2);
+
+    height: 36px;
+    min-width: 36px;
+    padding: 0 var(--sp-3);
+
+    font-family: var(--font-family-sans);
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--neutral-700);
+
+    background: var(--neutral-0);
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--radius-md);
+
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+
+    transition:
+        background var(--motion-fast) var(--ease-out),
+        border-color var(--motion-fast) var(--ease-out),
+        color var(--motion-fast) var(--ease-out),
+        box-shadow var(--motion-fast) var(--ease-out);
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: var(--neutral-50);
+    border-color: #b8c7de;
+}
+
+.pagination-btn:active:not(:disabled) {
+    background: #eaf0f8;
+    transform: scale(0.97);
+}
+
+.pagination-btn:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(34, 113, 230, 0.18);
+}
+
+/* ─── Page number button ─────────────────────────────────────────────────── */
+
+.pagination-btn--page {
+    padding: 0;
+    width: 36px;
+}
+
+/* ─── Active page ────────────────────────────────────────────────────────── */
+
+.pagination-btn--active {
+    background: var(--brand-400);
+    border-color: var(--brand-400);
+    color: #ffffff;
+    font-weight: 500;
+    pointer-events: none;
+}
+
+.pagination-btn--active:hover {
+    background: var(--brand-400);
+    border-color: var(--brand-400);
+}
+
+/* ─── Nav buttons (Prev / Next) ──────────────────────────────────────────── */
+
+.pagination-btn--nav {
+    padding: 0 var(--sp-3);
+    gap: var(--sp-2);
+}
+
+/* ─── Disabled ───────────────────────────────────────────────────────────── */
+
+.pagination-btn--disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+/* ─── Ellipsis ───────────────────────────────────────────────────────────── */
+
+.pagination-ellipsis {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    color: var(--neutral-400);
+}
+
+/* ─── Dark mode ──────────────────────────────────────────────────────────── */
+
+[data-theme="dark"] .pagination-btn {
+    background: var(--neutral-0);
+    border-color: var(--neutral-200);
+    color: var(--neutral-700);
+}
+
+[data-theme="dark"] .pagination-btn:hover:not(:disabled) {
+    background: var(--neutral-50);
+}
+
+[data-theme="dark"] .pagination-btn--active {
+    background: var(--brand-400);
+    border-color: var(--brand-400);
+    color: #ffffff;
+}
+
+/* ─── Reduced motion ─────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+    .pagination-btn {
+        transition: none;
+    }
+}
